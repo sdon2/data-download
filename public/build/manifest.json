@@ -1,13 +1,54 @@
 {
+  "node_modules/ionicons-npm/fonts/ionicons.eot": {
+    "file": "assets/ionicons-CbWxxKXJ.eot",
+    "src": "node_modules/ionicons-npm/fonts/ionicons.eot"
+  },
+  "node_modules/ionicons-npm/fonts/ionicons.svg": {
+    "file": "assets/ionicons-_k1V6qJw.svg",
+    "src": "node_modules/ionicons-npm/fonts/ionicons.svg"
+  },
+  "node_modules/ionicons-npm/fonts/ionicons.ttf": {
+    "file": "assets/ionicons-DFNGXij8.ttf",
+    "src": "node_modules/ionicons-npm/fonts/ionicons.ttf"
+  },
+  "node_modules/ionicons-npm/fonts/ionicons.woff": {
+    "file": "assets/ionicons-D_UeT5V0.woff",
+    "src": "node_modules/ionicons-npm/fonts/ionicons.woff"
+  },
+  "node_modules/typicons.font/src/font/typicons.eot": {
+    "file": "assets/typicons-BUU9UDrU.eot",
+    "src": "node_modules/typicons.font/src/font/typicons.eot"
+  },
+  "node_modules/typicons.font/src/font/typicons.svg": {
+    "file": "assets/typicons-CRzBgqNb.svg",
+    "src": "node_modules/typicons.font/src/font/typicons.svg"
+  },
+  "node_modules/typicons.font/src/font/typicons.ttf": {
+    "file": "assets/typicons-Cds9FLw-.ttf",
+    "src": "node_modules/typicons.font/src/font/typicons.ttf"
+  },
+  "node_modules/typicons.font/src/font/typicons.woff": {
+    "file": "assets/typicons-DO-EjvHL.woff",
+    "src": "node_modules/typicons.font/src/font/typicons.woff"
+  },
+  "node_modules/typicons.font/src/font/typicons.woff2": {
+    "file": "assets/typicons-CK8ldiyx.woff2",
+    "src": "node_modules/typicons.font/src/font/typicons.woff2"
+  },
   "resources/js/app.js": {
-    "file": "assets/app-StunAKX-.js",
+    "file": "assets/app-BmJO1NAV.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-CrHTjcEH.css",
+    "file": "assets/app-uoN04E3a.css",
     "src": "resources/sass/app.scss",
+    "isEntry": true
+  },
+  "resources/sass/fonts/fonts.scss": {
+    "file": "assets/fonts-BEZV0A2p.css",
+    "src": "resources/sass/fonts/fonts.scss",
     "isEntry": true
   }
 }

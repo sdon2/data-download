@@ -13,7 +13,7 @@
 
     &.active {
       border-radius: 2px;
-      background-color: $az-color-primary;
+      background-color: $color-primary;
       @include hover-focus() { color: #fff; }
     }
   }

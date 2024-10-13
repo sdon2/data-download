@@ -4,8 +4,8 @@ body {
   font-family: $font-family-roboto;
 }
 
-.az-body,
-.az-dashboard {
+.body,
+.dashboard {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -13,7 +13,7 @@ body {
   position: relative;
 }
 
-.az-body::before {
+.body::before {
   content: 'az';
   position: fixed;
   top: 45%;
@@ -30,7 +30,7 @@ body {
   //@include media-breakpoint-up(lg) { display: block; }
 }
 
-.az-table-reference {
+.table-reference {
   margin-top: 40px;
   background-color: #fff;
 

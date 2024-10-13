@@ -6,10 +6,15 @@
         "build": "vite build"
     },
     "devDependencies": {
+        "@popperjs/core": "^2.11.8",
+        "@rollup/plugin-inject": "^5.0.5",
         "axios": "^1.7.4",
-        "bootstrap": "4.6",
+        "bootstrap": "^5.3.3",
+        "ionicons-npm": "^2.0.1",
+        "jquery": "^3.7.1",
         "laravel-vite-plugin": "^1.0",
         "sass": "^1.79.5",
+        "typicons.font": "^2.1.2",
         "vite": "^5.0"
     }
 }

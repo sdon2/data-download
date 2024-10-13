@@ -99,7 +99,7 @@
   }
 
   .datetimepicker-days table {
-    thead tr:first-child th { height: $az-height-base; }
+    thead tr:first-child th { height: $height-base; }
     thead tr:last-child th {
       height: 25px;
       text-transform: uppercase;
@@ -112,7 +112,7 @@
 
 /* jQuery Simple Datetimepicker */
 
-.az-datetimepicker {
+.datetimepicker {
   box-shadow: none;
   border-radius: 0;
   border-color: $gray-300;

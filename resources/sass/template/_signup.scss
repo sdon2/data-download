@@ -1,6 +1,6 @@
 /* ###### 7.10 Signup  ###### */
 
-.az-signup-wrapper {
+.signup-wrapper {
   flex: 1;
   display: flex;
   justify-content: center;
@@ -9,7 +9,7 @@
   @include media-breakpoint-up(lg) { justify-content: flex-end; }
 }
 
-.az-column-signup-left {
+.column-signup-left {
   flex: 1;
   padding: 30px;
   flex-direction: column;
@@ -29,7 +29,7 @@
     &::before { width: auto; }
   }
 
-  .az-logo {
+  .logo {
     font-size: 40px;
     line-height: 1;
   }
@@ -52,11 +52,11 @@
     padding-right: 25px;
     font-weight: 700;
     text-transform: uppercase;
-    height: $az-height-base;
+    height: $height-base;
   }
 }
 
-.az-column-signup {
+.column-signup {
   background-color: #fff;
   padding: 30px;
   display: flex;
@@ -73,10 +73,10 @@
   }
 }
 
-.az-signup-header {
+.signup-header {
   h2 {
     font-weight: 500;
-    color: $az-color-primary;
+    color: $color-primary;
     letter-spacing: -1px;
   }
 
@@ -129,7 +129,7 @@
   }
 }
 
-.az-signup-footer {
+.signup-footer {
   p {
     color: $gray-600;
     margin-bottom: 0;
@@ -139,6 +139,6 @@
     color: $gray-900;
     font-weight: 700;
 
-    @include hover-focus() { color: $az-color-primary; }
+    @include hover-focus() { color: $color-primary; }
   }
 }

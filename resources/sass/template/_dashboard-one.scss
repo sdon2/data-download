@@ -1,11 +1,11 @@
 /* ###### 8.1 Dashboard One  ###### */
 
-.az-content-dashboard {
+.content-dashboard {
   padding-top: 20px;
   @include media-breakpoint-up(lg) { padding-top: 30px; }
 }
 
-.az-dashboard-one-title {
+.dashboard-one-title {
   margin-bottom: 20px;
 
   @include media-breakpoint-up(sm) {
@@ -17,7 +17,7 @@
   @include media-breakpoint-up(lg) { margin-bottom: 30px; }
 }
 
-.az-dashboard-title {
+.dashboard-title {
   font-size: 22px;
   font-weight: 700;
   color: $gray-900;
@@ -25,12 +25,12 @@
   margin-bottom: 3px;
 }
 
-.az-dashboard-text {
+.dashboard-text {
   font-size: 13px;
   margin-bottom: 0;
 }
 
-.az-dashboard-date {
+.dashboard-date {
   display: flex;
   align-items: center;
   margin-top: 20px;
@@ -85,7 +85,7 @@
   }
 }
 
-.az-dashboard-nav {
+.dashboard-nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -102,7 +102,7 @@
     @include media-breakpoint-up(sm) { font-size: $font-size-base; }
     @include media-breakpoint-up(lg) { padding: 5px 15px 10px; }
 
-    @include hover-focus() { color: $az-color-primary; }
+    @include hover-focus() { color: $color-primary; }
 
     + .nav-link { border-left: 1px solid $gray-300; }
   }
@@ -114,9 +114,9 @@
 
       @include media-breakpoint-up(sm) { display: block; }
 
-      @include hover-focus() { color: $az-color-primary; }
+      @include hover-focus() { color: $color-primary; }
 
-      &.active { color: $az-color-primary; }
+      &.active { color: $color-primary; }
 
       &:first-child { padding-left: 0; }
 
@@ -134,7 +134,7 @@
 
       @include media-breakpoint-up(md) { display: block; }
 
-      @include hover-focus() { color: $az-color-primary; }
+      @include hover-focus() { color: $color-primary; }
 
       i {
         font-size: 16px;

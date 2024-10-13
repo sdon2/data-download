@@ -6,7 +6,7 @@
   padding: 9px 20px;
   @include border-radius(0);
   transition: none;
-  min-height: $az-height-base;
+  min-height: $height-base;
 
   &:active,
   &:focus { box-shadow: none; }

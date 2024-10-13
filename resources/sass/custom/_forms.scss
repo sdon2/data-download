@@ -152,7 +152,7 @@
   }
 }
 
-.az-toggle {
+.toggle {
   width: 60px;
   height: 25px;
   background-color: $gray-400;
@@ -195,24 +195,24 @@
   }
 
   &.on {
-    background-color: $az-color-primary;
+    background-color: $color-primary;
 
     span { left: 37px; }
   }
 }
 
-.az-toggle-secondary.on { background-color: $blue; }
-.az-toggle-success.on { background-color: $green; }
-.az-toggle-dark.on { background-color: $gray-900; }
+.toggle-secondary.on { background-color: $blue; }
+.toggle-success.on { background-color: $green; }
+.toggle-dark.on { background-color: $gray-900; }
 
 
-.az-form-group {
+.form-group {
   padding: 12px 15px;
   border: 1px solid $input-border-color;
 
   &.focus {
     border-color: $gray-400;
-    box-shadow: 0 0 0 2px rgba($az-color-primary, .16);
+    box-shadow: 0 0 0 2px rgba($color-primary, .16);
   }
 
   .form-label {

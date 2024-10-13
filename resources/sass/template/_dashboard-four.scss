@@ -1,8 +1,8 @@
 /* ###### 8.4 Dashboard Four  ###### */
 
-.az-navbar-dashboard-four {
+.navbar-dashboard-four {
   box-shadow: 0 0 30px rgba($gray-900, .08);
-  
+
   .container-fluid {
     @include media-breakpoint-up(lg) {
       padding-left: 25px;
@@ -11,7 +11,7 @@
   }
 }
 
-.az-content-dashboard-four {
+.content-dashboard-four {
   padding: 20px;
 
   @include media-breakpoint-up(lg) {
@@ -19,7 +19,7 @@
     padding: 30px 25px;
   }
 
-  ~ .az-footer {
+  ~ .footer {
     .container,
     .container-fluid {
       padding-left: 25px;
@@ -51,7 +51,7 @@
     }
   }
 
-  .az-content-header {
+  .content-header {
     height: auto;
     margin-bottom: 20px;
     align-items: flex-start;
@@ -61,7 +61,7 @@
   }
 }
 
-.az-content-header-right {
+.content-header-right {
   display: none;
 
   @include media-breakpoint-up(lg) {
@@ -130,7 +130,7 @@
       }
     }
 
-    .ui-datepicker-month { color: $az-color-primary; }
+    .ui-datepicker-month { color: $color-primary; }
     .ui-datepicker-calendar {
       width: calc(100% - 20px);
       @include media-breakpoint-up(sm) { width: 100%; }
@@ -156,8 +156,8 @@
 
       .ui-datepicker-today a {
         background-color: transparent;
-        border: 2px solid $az-color-secondary;
-        color: $az-color-secondary;
+        border: 2px solid $color-secondary;
+        color: $color-secondary;
         font-weight: 700;
       }
     }
@@ -391,7 +391,7 @@
   }
 }
 
-.az-media-date {
+.media-date {
   h1 {
     font-size: 42px;
     font-family: 'Archivo', $font-family-base;
@@ -419,7 +419,7 @@
   padding: 20px;
   box-shadow: 0 0 10px rgba($gray-900, 0.1);
 
-  .az-content-label { font-size: 13px; }
+  .content-label { font-size: 13px; }
 
   .media { margin-bottom: 15px; }
 
@@ -545,13 +545,13 @@
     display: flex;
     align-items: center;
 
-    .az-img-user {
+    .img-user {
       width: 28px;
       height: 28px;
 
       &::after { display: none; }
 
-      + .az-img-user { margin-left: -6px; }
+      + .img-user { margin-left: -6px; }
     }
 
     a:last-child {
@@ -572,7 +572,7 @@
 
   @include media-breakpoint-up(md) { height: 100%; }
 
-  .az-content-label {
+  .content-label {
     font-size: $font-size-base;
     margin-bottom: 20px;
 

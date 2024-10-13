@@ -1,6 +1,6 @@
 /* ###### 6.7 Navbar Variant  ###### */
 
-.az-navbar-two {
+.navbar-two {
   .nav-item.active {
     position: relative;
 
@@ -13,7 +13,7 @@
         left: 0;
         right: 12px;
         bottom: auto;
-        border-bottom: 2px solid $az-color-primary;
+        border-bottom: 2px solid $color-primary;
         z-index: 5;
       }
     }
@@ -47,7 +47,7 @@
 }
 
 // minimalist navbar
-.az-navbar-three {
+.navbar-three {
   .nav-item {
     display: block;
 
@@ -64,7 +64,7 @@
 
     &.active {
       .nav-link {
-        color: $az-color-primary;
+        color: $color-primary;
         font-weight: 700;
       }
     }

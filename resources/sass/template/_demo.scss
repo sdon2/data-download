@@ -1,6 +1,6 @@
 /* ###### 7.1 Demo  ###### */
 
-.az-home-slider {
+.home-slider {
   position: relative;
   z-index: 4;
   width: 100%;
@@ -95,7 +95,7 @@
   }
 }
 
-.az-home-content {
+.home-content {
   position: absolute;
   top: 20px;
   left: 20px;
@@ -112,7 +112,7 @@
 
   @include media-breakpoint-up(md) { width: 410px; }
 
-  .az-logo {
+  .logo {
     font-size: 30px;
     font-weight: 700;
     display: flex;
@@ -206,7 +206,7 @@
   }
 }
 
-.az-content-choose-demo {
+.content-choose-demo {
   position: relative;
   z-index: 5;
   background-color: darken($indigo, 40%);
@@ -323,13 +323,13 @@
     }
   }
 
-  .az-content-label {
+  .content-label {
     color: $gray-600;
     margin-bottom: 5px;
     letter-spacing: 1px;
   }
 
-  .az-content-title {
+  .content-title {
     font-size: 15px;
     font-weight: 400;
     margin-bottom: 0;
@@ -339,7 +339,7 @@
   }
 }
 
-.az-footer-demo {
+.footer-demo {
   background-color: darken($indigo, 45%);
   color: rgba(#fff, .4);
   height: 60px;
@@ -362,7 +362,7 @@
 }
 
 //elem-icons.html
-.az-icon-group {
+.icon-group {
   text-align: center;
   padding: 20px;
   color: $gray-800;
@@ -456,14 +456,14 @@
 }
 
 //form-elements.html
-.az-toggle-group-demo {
+.toggle-group-demo {
   display: flex;
 
-  .az-toggle + .az-toggle { margin-left: 10px; }
+  .toggle + .toggle { margin-left: 10px; }
 }
 
 //form-layouts.html
-.az-dropdown-form-demo {
+.dropdown-form-demo {
   .static-dropdown {
     padding: 20px;
     background-color: $gray-200;
@@ -568,7 +568,7 @@
 }
 
 
-.az-content-left-components {
+.content-left-components {
   border-right: 1px solid $gray-200;
   width: 200px;
 
@@ -591,17 +591,17 @@
 
       + .nav-link { margin-top: 5px; }
 
-      @include hover() { color: $az-color-primary; }
+      @include hover() { color: $color-primary; }
 
       &.active {
-        color: $az-color-primary;
+        color: $color-primary;
         font-weight: 500;
       }
     }
   }
 }
 
-.az-breadcrumbs {
+.breadcrumbs {
   padding: 0;
   background-color: transparent;
   margin-bottom: 0;
@@ -613,7 +613,7 @@
     font-weight: 700;
 
     a {
-      color: $az-color-headline;
+      color: $color-headline;
       @include transition($transition-base);
       @include hover() { color: $gray-500; }
     }
@@ -632,14 +632,14 @@
   }
 }
 
-.az-page-header {
+.page-header {
   position: relative;
   padding: 30px 0 40px;
-  border-bottom: 1px solid $az-border-base;
+  border-bottom: 1px solid $border-base;
   margin-bottom: 40px;
 }
 
-.az-page-title {
+.page-title {
   font-weight: 700;
   font-size: 40px;
   font-family: $font-family-raleway;
@@ -648,13 +648,13 @@
   letter-spacing: -1.5px;
 }
 
-.az-page-text {
+.page-text {
   font-size: 20px;
   font-weight: 300;
   margin-bottom: 30px;
 }
 
-.az-page-content-list {
+.page-content-list {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -677,14 +677,14 @@
   }
 }
 
-.az-page-label {
+.page-label {
   font-size: 20px;
   font-weight: 600;
   margin-bottom: 5px;
   letter-spacing: -.2px;
 }
 
-.az-syntax-wrapper {
+.syntax-wrapper {
   position: relative;
 
   .badge {
@@ -714,12 +714,12 @@
   display: flex;
   align-items: center;
 
-  .az-img-user,
-  .az-avatar {
+  .img-user,
+  .avatar {
     flex-shrink: 0;
 
-    + .az-img-user,
-    + .az-avatar {
+    + .img-user,
+    + .avatar {
       margin-left: 5px;
       @include media-breakpoint-up(sm) { margin-left: 10px; }
     }

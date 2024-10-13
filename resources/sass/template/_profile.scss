@@ -1,7 +1,7 @@
 /* ###### 7.8 Profile  ###### */
 
 
-.az-content-profile {
+.content-profile {
   flex: 1;
 
   .container,
@@ -12,7 +12,7 @@
   }
 }
 
-.az-content-left-profile {
+.content-left-profile {
   padding-left: 0;
   padding-right: 0;
   display: block;
@@ -31,8 +31,8 @@
   @include media-breakpoint-up(xl) { padding-right: 25px; }
 }
 
-.az-profile-overview {
-  .az-img-user {
+.profile-overview {
+  .img-user {
     width: 120px;
     height: 120px;
     margin-bottom: 20px;
@@ -42,25 +42,25 @@
   .btn-icon-list .btn { @include border-radius(100%); }
 }
 
-.az-profile-name {
+.profile-name {
   color: $gray-900;
   font-weight: 700;
   font-size: 20px;
   margin-bottom: 2px;
 }
 
-.az-profile-name-text {
+.profile-name-text {
   color: $gray-600;
   font-size: 13px;
   margin-bottom: 0;
 }
 
-.az-profile-bio {
+.profile-bio {
   font-size: 13px;
   margin-bottom: 20px;
 }
 
-.az-profile-social-list {
+.profile-social-list {
   .media {
     align-items: center;
 
@@ -85,7 +85,7 @@
   }
 }
 
-.az-content-body-profile {
+.content-body-profile {
   .nav {
     flex-direction: column;
     padding: 20px 20px 20px 0;
@@ -102,7 +102,7 @@
     @include media-breakpoint-up(xl) { padding-left: 25px; }
   }
 
-  .az-nav-line {
+  .nav-line {
     .nav-link {
       text-transform: uppercase;
       font-size: 13px;
@@ -111,10 +111,10 @@
 
       &.active {
         font-weight: 700;
-        color: $az-color-primary;
+        color: $color-primary;
 
         &::before {
-          background-color: $az-color-primary;
+          background-color: $color-primary;
 
           @include media-breakpoint-only(sm) {
             width: auto;
@@ -138,14 +138,14 @@
   }
 }
 
-.az-profile-body {
+.profile-body {
   padding: 15px 0 0;
   @include media-breakpoint-up(sm) { padding-top: 20px; }
   @include media-breakpoint-up(lg) { padding: 25px 0 0 20px; }
   @include media-breakpoint-up(xl) { padding-left: 25px; }
 }
 
-.az-profile-view-chart {
+.profile-view-chart {
   position: relative;
   width: calc(100% - 10px);
   height: 200px;
@@ -156,7 +156,7 @@
   }
 }
 
-.az-profile-view-info {
+.profile-view-info {
   position: absolute;
   top: 0;
   left: 0;
@@ -180,7 +180,7 @@
   }
 }
 
-.az-traffic-detail-item {
+.traffic-detail-item {
   > div:first-child {
     display: flex;
     align-items: center;
@@ -201,12 +201,12 @@
     }
   }
 
-  + .az-traffic-detail-item { margin-top: 25px; }
+  + .traffic-detail-item { margin-top: 25px; }
 
   .progress { height: 8px; }
 }
 
-.az-profile-work-list {
+.profile-work-list {
   .media + .media { margin-top: 25px; }
 
   .media-logo {
@@ -245,7 +245,7 @@
   }
 }
 
-.az-profile-contact-list {
+.profile-contact-list {
   .media {
     align-items: center;
     + .media { margin-top: 25px; }

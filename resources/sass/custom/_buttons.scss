@@ -1,7 +1,7 @@
 /* ###### 4.2 Buttons  ###### */
 
-.btn-az-primary { @include button-variant($indigo, darken($indigo, 5%)); }
-.btn-az-secondary { @include button-variant($blue, darken($blue, 5%)); }
+.btn-primary { @include button-variant($indigo, darken($indigo, 5%)); }
+.btn-secondary { @include button-variant($blue, darken($blue, 5%)); }
 
 .btn-rounded {
   @include border-radius(50px);
@@ -11,7 +11,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: $az-height-base;
+  height: $height-base;
 
   i {
     line-height: 0;
@@ -25,8 +25,8 @@
 }
 
 .btn-icon {
-  width: $az-height-base;
-  height: $az-height-base;
+  width: $height-base;
+  height: $height-base;
   display: flex;
   align-items: center;
   justify-content: center;

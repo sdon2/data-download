@@ -1,6 +1,6 @@
 /* ###### 4.8 Nav   ###### */
 
-.az-nav {
+.nav {
   @include media-breakpoint-up(md) { align-items: center; }
 
   .nav-link {
@@ -29,16 +29,16 @@
         }
     }
 
-    &.active { color: $az-color-primary; }
+    &.active { color: $color-primary; }
   }
 }
 
-.az-nav-column {
+.nav-column {
   flex-direction: column;
 
   .nav-link {
     padding: 0;
-    height: $az-height-base;
+    height: $height-base;
     color: $gray-900;
     display: flex;
     align-items: center;
@@ -107,24 +107,24 @@
   }
 }
 
-.az-nav-dark {
+.nav-dark {
   .nav-link {
     color: rgba(#fff, .7);
     @include hover-focus() { color: #fff; }
 
     + .nav-link { border-color: $gray-700; }
-    &.active { color: $az-color-primary; }
+    &.active { color: $color-primary; }
   }
 }
 
-.az-nav-colored-bg {
+.nav-colored-bg {
   .nav-link {
     + .nav-link { border-color: rgba(#fff, .4); }
     &.active { color: #fff; }
   }
 }
 
-.az-nav-line {
+.nav-line {
   position: relative;
 
   .nav-link {
@@ -167,7 +167,7 @@
     }
   }
 
-  &.az-nav-dark {
+  &.nav-dark {
     .nav-link {
       color: rgba(#fff, .7);
       @include hover-focus() { color: #fff; }
@@ -180,7 +180,7 @@
   }
 }
 
-.az-nav-tabs {
+.nav-tabs {
   padding: 15px 15px 0;
   background-color: $gray-300;
 
@@ -262,7 +262,7 @@
   }
 }
 
-.az-tab-pane {
+.tab-pane {
   display: none;
 
   &.active { display: block; }

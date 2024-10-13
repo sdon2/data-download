@@ -1,22 +1,22 @@
 /* ###### 6.6 Navbar  ###### */
 
-.az-navbar-show {
+.navbar-show {
   @include media-breakpoint-down(md) {
     overflow: hidden;
 
-    .az-navbar-backdrop {
+    .navbar-backdrop {
       visibility: visible;
       opacity: 1;
     }
 
-    .az-navbar {
+    .navbar {
       transform: translateX(0);
       visibility: visible;
     }
   }
 }
 
-.az-navbar-backdrop {
+.navbar-backdrop {
   position: fixed;
   top: 0;
   left: 0;
@@ -29,17 +29,17 @@
   @include transition(all 0.4s);
 }
 
-.az-navbar {
+.navbar {
   position: fixed;
   top: 0;
   left: 0;
   bottom: 0;
-  width: $az-width-sidebar;
+  width: $width-sidebar;
   overflow-y: auto;
   background-color: #fff;
   z-index: 1000;
   visibility: hidden;
-  transform: translateX(-$az-width-sidebar);
+  transform: translateX(-$width-sidebar);
   @include transition(all 0.4s);
 
   @include media-breakpoint-up(lg) {
@@ -68,7 +68,7 @@
     @include media-breakpoint-up(lg) {
       flex-direction: row;
       align-items: center;
-      height: $az-height-navbar;
+      height: $height-navbar;
     }
   }
 
@@ -128,7 +128,7 @@
     }
 
     &.active {
-      .nav-link { color: $az-color-primary; }
+      .nav-link { color: $color-primary; }
     }
 
     &.show {
@@ -154,7 +154,7 @@
     position: relative;
     display: flex;
     align-items: center;
-    height: $az-height-base + 4px;
+    height: $height-base + 4px;
     outline: none;
 
     @include media-breakpoint-up(lg) {
@@ -262,7 +262,7 @@
       > .nav-sub { display: block; }
     }
 
-    &.active > .nav-sub-link { color: $az-color-primary; }
+    &.active > .nav-sub-link { color: $color-primary; }
   }
 
   .nav-sub-link {
@@ -275,11 +275,11 @@
 
     @include media-breakpoint-up(lg) {
       font-size: .8125rem;
-      height: $az-height-base - 2px;
+      height: $height-base - 2px;
     }
 
     @include hover-focus() {
-      color: $az-color-primary;
+      color: $color-primary;
       outline: none;
     }
 
@@ -412,18 +412,18 @@
   }
 }
 
-.az-navbar-header {
+.navbar-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 20px;
   border-bottom: 1px solid $gray-200;
-  height: $az-height-header-mobile;
+  height: $height-header-mobile;
 
   @include media-breakpoint-up(lg) { display: none; }
 }
 
-.az-navbar-search {
+.navbar-search {
   position: relative;
   padding: 0 20px;
   border-bottom: 1px solid $gray-200;
@@ -445,7 +445,7 @@
     position: absolute;
     top: 0;
     right: 0;
-    height: $az-height-base;
+    height: $height-base;
     padding-left: 20px;
     padding-right: 20px;
     font-size: 16px;

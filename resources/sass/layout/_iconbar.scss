@@ -1,14 +1,14 @@
 /* ###### 6.5 Iconbar  ###### */
 
-.az-iconbar-show {
+.iconbar-show {
   @include media-breakpoint-down(md) {
-    .az-iconbar { display: flex; }
-    .az-iconbar-aside { display: block; }
+    .iconbar { display: flex; }
+    .iconbar-aside { display: block; }
   }
 }
 
-.az-iconbar {
-  width: $az-height-header;
+.iconbar {
+  width: $height-header;
   display: none;
   flex-direction: column;
   align-items: center;
@@ -34,8 +34,8 @@
     position: relative;
     padding: 0;
     color: $body-color;
-    width: $az-height-base + 2px;
-    height: $az-height-base + 2px;
+    width: $height-base + 2px;
+    height: $height-base + 2px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -56,13 +56,13 @@
 
     @include hover-focus() { color: $gray-700; }
 
-    &.active { color: $az-color-primary; }
+    &.active { color: $color-primary; }
 
     + .nav-link { margin-top: 10px; }
   }
 }
 
-.az-iconbar-logo {
+.iconbar-logo {
   width: 100%;
   display: flex;
   align-items: center;
@@ -81,21 +81,21 @@
     left: 20px;
     height: 3px;
     width: 24px;
-    background-color: $az-color-primary;
+    background-color: $color-primary;
     @include border-radius(2px);
   }
 
   @include hover-focus() { color: $gray-900; }
 }
 
-.az-iconbar-bottom {
+.iconbar-bottom {
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.az-iconbar-help {
+.iconbar-help {
   line-height: 0;
   font-size: 22px;
   color: $gray-600;
@@ -104,14 +104,14 @@
   @include hover-focus() { color: $gray-900; }
 }
 
-.az-iconbar-aside {
-  width: $az-width-iconbar-aside;
+.iconbar-aside {
+  width: $width-iconbar-aside;
   height: 100%;
   background-color: #fff;
   border-right: 1px solid $gray-400;
   position: fixed;
   top: 0;
-  left: $az-height-header;
+  left: $height-header;
   overflow-y: auto;
   z-index: 600;
   display: none;
@@ -124,22 +124,22 @@
   &.show {
     @include media-breakpoint-up(lg) { display: block; }
     @include media-breakpoint-up(xl) {
-      + .az-content { margin-left: $az-height-header + $az-width-iconbar-aside; }
+      + .content { margin-left: $height-header + $width-iconbar-aside; }
     }
   }
 }
 
-.az-iconbar-header {
+.iconbar-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 20px;
   padding-left: 0;
 
-  .az-logo { line-height: 1; }
+  .logo { line-height: 1; }
 }
 
-.az-iconbar-toggle-menu {
+.iconbar-toggle-menu {
   display: block;
   position: relative;
   line-height: 0;
@@ -171,7 +171,7 @@
   }
 }
 
-.az-iconbar-body {
+.iconbar-body {
   padding: 20px;
   padding-left: 0;
   height: calc(100vh - 68px);
@@ -194,8 +194,8 @@
 
     &.active {
       .nav-link {
-        color: $az-color-primary;
-        i { color: $az-color-primary; }
+        color: $color-primary;
+        i { color: $color-primary; }
       }
     }
 
@@ -211,7 +211,7 @@
     padding: 0;
     display: flex;
     align-items: center;
-    height: $az-height-base;
+    height: $height-base;
 
     i {
       color: $gray-500;
@@ -227,8 +227,8 @@
     }
 
     @include hover-focus() {
-      color: $az-color-primary;
-      i { color: $az-color-primary; }
+      color: $color-primary;
+      i { color: $color-primary; }
     }
 
     &.with-sub {
@@ -266,7 +266,7 @@
 
       + .nav-sub-item { border-top: 1px dotted $gray-300; }
 
-      &.active > .nav-sub-link { color: $az-color-primary; }
+      &.active > .nav-sub-link { color: $color-primary; }
     }
 
     .nav-sub-link {
@@ -275,12 +275,12 @@
       height: 36px;
       color: $body-color;
 
-      @include hover-focus() { color: $az-color-primary; }
+      @include hover-focus() { color: $color-primary; }
     }
   }
 }
 
-.az-iconbar-title {
+.iconbar-title {
   font-size: 20px;
   font-weight: 700;
   color: $gray-900;
@@ -288,14 +288,14 @@
   line-height: 1;
 }
 
-.az-iconbar-text {
+.iconbar-text {
   display: block;
   font-size: 12px;
   color: $gray-600;
   margin-bottom: 12px;
 }
 
-.az-iconbar-pane {
+.iconbar-pane {
   margin-bottom: 20px;
   display: none;
 

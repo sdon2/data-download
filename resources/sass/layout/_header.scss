@@ -1,24 +1,24 @@
 /* ###### 6.4 Header  ###### */
 
-.az-header-menu-show {
+.header-menu-show {
   @include media-breakpoint-down(md) {
     overflow: hidden;
 
-    .az-header-menu {
+    .header-menu {
       border-right: 1px solid rgba($gray-900, .08);
       box-shadow: 0 0 30px rgba($gray-900, .08);
       transform: translateX(0);
     }
 
-    .az-navbar-backdrop {
+    .navbar-backdrop {
       visibility: visible;
       opacity: 1;
     }
   }
 }
 
-.az-header {
-  height: $az-height-header-mobile;
+.header {
+  height: $height-header-mobile;
   background-color: #fff;
   box-shadow: 0 0 30px rgba($gray-900, .08);
   border-bottom: 1px solid rgba($gray-900, .12);
@@ -26,7 +26,7 @@
   @include media-breakpoint-up(lg) {
     position: relative;
     z-index: 100;
-    height: $az-height-header;
+    height: $height-header;
   }
 
   > .container,
@@ -49,36 +49,36 @@
     @include media-breakpoint-down(md) { max-width: none; }
   }
 
-  .az-header-left .az-logo {
+  .header-left .logo {
     display: none;
     @include media-breakpoint-up(lg) { display: flex; }
   }
 }
 
-.az-header-left {
+.header-left {
   display: flex;
   align-items: center;
 
-  .az-header-arrow {
+  .header-arrow {
     display: none;
     position: relative;
     top: -2px;
   }
 }
 
-.az-logo {
+.logo {
   font-weight: 700;
   font-size: 28px;
   font-family: 'Poppins', sans-serif;
   text-transform: lowercase;
-  color: $az-color-primary;
+  color: $color-primary;
   letter-spacing: -1px;
   display: flex;
   align-items: center;
   position: relative;
   top: -2px;
 
-  @include hover-focus() { color: $az-color-primary; }
+  @include hover-focus() { color: $color-primary; }
 
   i {
     display: block;
@@ -93,7 +93,7 @@
   }
 }
 
-.az-header-menu-icon {
+.header-menu-icon {
   margin-right: 10px;
   width: 20px;
   height: 30px;
@@ -128,16 +128,16 @@
   }
 }
 
-.az-header-menu {
+.header-menu {
   position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
-  width: $az-width-sidebar;
+  width: $width-sidebar;
   background-color: #fff;
   overflow-y: auto;
   z-index: 1000;
-  transform: translateX(-$az-width-sidebar);
+  transform: translateX(-$width-sidebar);
   @include transition(all 0.35s);
 
   @include media-breakpoint-up(lg) {
@@ -165,7 +165,7 @@
     &::before {
       content: '';
       position: absolute;
-      top: $az-height-header + 3px;
+      top: $height-header + 3px;
       margin-left: 25px;
       width: 15px;
       height: 15px;
@@ -201,8 +201,8 @@
       }
 
       @include hover() {
-        color: $az-color-primary;
-        i { color: $az-color-primary; }
+        color: $color-primary;
+        i { color: $color-primary; }
       }
 
       &.with-sub::after {
@@ -235,7 +235,7 @@
 
     &.active {
       > .nav-link {
-        color: $az-color-primary;
+        color: $color-primary;
         position: relative;
 
         &::before {
@@ -245,7 +245,7 @@
           top: 0;
           left: -20px;
           width: 2px;
-          background-color: $az-color-primary;
+          background-color: $color-primary;
           @include border-radius();
 
           @include media-breakpoint-up(lg) {
@@ -265,13 +265,13 @@
         @include media-breakpoint-up(lg) { display: block; }
       }
 
-      .az-menu-sub { display: block; }
+      .menu-sub { display: block; }
     }
   }
 }
 
-.az-header-menu-header {
-  height: $az-height-header-mobile;
+.header-menu-header {
+  height: $height-header-mobile;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -286,7 +286,7 @@
   }
 }
 
-.az-menu-sub {
+.menu-sub {
   font-size: 13px;
   margin-left: 32px;
   margin-top: 12px;
@@ -294,7 +294,7 @@
 
   @include media-breakpoint-up(lg) {
     position: absolute;
-    top: $az-height-header + 10px;
+    top: $height-header + 10px;
     background-color: #fff;
     padding: 15px 20px;
     border: 2px solid rgba($gray-900, .12);
@@ -318,10 +318,10 @@
       border-top: 1px dotted $gray-200;
     }
 
-    @include hover-focus() { color: $az-color-primary; }
+    @include hover-focus() { color: $color-primary; }
 
     &.active {
-      color: $az-color-primary;
+      color: $color-primary;
       font-weight: 500;
 
       @include media-breakpoint-up(lg) { font-weight: 400; }
@@ -329,7 +329,7 @@
   }
 }
 
-.az-menu-sub-mega {
+.menu-sub-mega {
   left: 0;
   right: 0;
   background-color: transparent;
@@ -404,7 +404,7 @@
   }
 }
 
-.az-header-center {
+.header-center {
   flex: 1;
   margin: 0 50px;
   position: relative;
@@ -417,7 +417,7 @@
     border-width: 2px;
     background-color: #fcfcfc;
     transition: none;
-    height: $az-height-base + 2px;
+    height: $height-base + 2px;
 
     &:focus {
       background-color: #fff;
@@ -433,7 +433,7 @@
     top: 0;
     right: 0;
     background-color: transparent;
-    height: $az-height-base + 2px;
+    height: $height-base + 2px;
     color: $gray-400;
     transition: none;
     font-size: 16px;
@@ -443,7 +443,7 @@
   }
 }
 
-.az-header-right {
+.header-right {
   display: flex;
   align-items: center;
 
@@ -473,7 +473,7 @@
     font-family: $font-family-sans-serif;
     font-size: 11px;
     font-weight: 500;
-    background-color: $az-color-primary;
+    background-color: $color-primary;
     color: #fff;
     letter-spacing: .5px;
     display: flex;
@@ -486,14 +486,14 @@
   }
 }
 
-.az-header-search-link {
+.header-search-link {
   font-size: 18px;
   color: $gray-700;
   line-height: 1;
   margin-right: 15px;
 }
 
-.az-header-arrow {
+.header-arrow {
   font-size: 27px;
   color: $gray-900;
   display: inline-block;
@@ -504,8 +504,8 @@
   @include hover-focus() { color: $gray-700; }
 }
 
-.az-header-message,
-.az-header-notification {
+.header-message,
+.header-notification {
   position: relative;
 
   > a {
@@ -531,7 +531,7 @@
   }
 }
 
-.az-header-notification {
+.header-notification {
   margin-left: 15px;
 
   > a {
@@ -544,8 +544,8 @@
       width: 14px;
       height: 14px;
       border: 2px solid transparent;
-      border-top-color: $gray-300; //$az-border-color;
-      border-left-color: $gray-300; //$az-border-color;
+      border-top-color: $gray-300; //$border-color;
+      border-left-color: $gray-300; //$border-color;
       transform: rotate(45deg);
       background-color: #fff;
       z-index: 901;
@@ -598,7 +598,7 @@
   }
 }
 
-.az-notification-title {
+.notification-title {
   font-size: 18px;
   font-weight: 700;
   color: $gray-900;
@@ -606,12 +606,12 @@
   line-height: 1;
 }
 
-.az-notification-text {
+.notification-text {
   font-size: $font-size-sm;
   margin-bottom: 15px;
 }
 
-.az-notification-list {
+.notification-list {
   .media {
     padding: 10px 0;
     position: relative;
@@ -657,11 +657,11 @@
   }
 }
 
-.az-profile-menu {
+.profile-menu {
   position: relative;
   margin-left: 15px;
 
-  > .az-img-user {
+  > .img-user {
     outline: none;
     width: 32px;
     height: 32px;
@@ -675,8 +675,8 @@
       width: 14px;
       height: 14px;
       border: 2px solid transparent;
-      border-top-color: $gray-300; //$az-border-color;
-      border-left-color: $gray-300; //$az-border-color;
+      border-top-color: $gray-300; //$border-color;
+      border-left-color: $gray-300; //$border-color;
       transform: rotate(45deg);
       background-color: #fff;
       z-index: 901;
@@ -716,7 +716,7 @@
   .dropdown-item {
     position: relative;
     padding: 0;
-    height: $az-height-base;
+    height: $height-base;
     display: flex;
     align-items: center;
     font-size: $font-size-sm;
@@ -733,7 +733,7 @@
 
     @include hover-focus() {
       background-color: transparent;
-      color: $az-color-primary;
+      color: $color-primary;
     }
 
     + .dropdown-item { border-top: 1px dotted $gray-400; }
@@ -742,20 +742,20 @@
   }
 
   &.show {
-    .az-img-user::before {
+    .img-user::before {
       @include media-breakpoint-up(sm) { display: block; }
     }
     .dropdown-menu { display: block; }
   }
 }
 
-.az-header-profile {
+.header-profile {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px;
 
-  .az-img-user {
+  .img-user {
     width: 120px;
     height: 120px;
     margin-bottom: 20px;
@@ -785,7 +785,7 @@
 
 
 // New
-.az-header-sticky {
+.header-sticky {
   position: fixed;
   top: 0;
   left: 0;

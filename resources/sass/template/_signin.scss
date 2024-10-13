@@ -1,13 +1,13 @@
 /* ###### 7.9 Signin  ###### */
 
-.az-signin-wrapper {
+.signin-wrapper {
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.az-card-signin {
+.card-signin {
   height: 560px;
   padding: 20px;
   display: flex;
@@ -22,10 +22,10 @@
   }
 }
 
-.az-signin-header {
+.signin-header {
   h2 {
     font-weight: 500;
-    color: $az-color-primary;
+    color: $color-primary;
     letter-spacing: -1px;
   }
 
@@ -57,7 +57,7 @@
   .btn { margin-top: 25px; }
 }
 
-.az-signin-footer {
+.signin-footer {
   p {
     color: $gray-600;
     &:first-child { margin-bottom: 5px; }
@@ -68,6 +68,6 @@
     color: $gray-900;
     font-weight: 700;
 
-    @include hover-focus() { color: $az-color-primary; }
+    @include hover-focus() { color: $color-primary; }
   }
 }
