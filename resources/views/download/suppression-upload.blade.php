@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Data Upload')
+@section('title', 'Supression Upload')
 
 @section('content')
     <div class="row justify-content-center mb-4">
@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-header bg-primary">
                     <div class="card-title text-white">
-                        {{ __('Data Upload') }}
+                        {{ __('Suppression Upload') }}
                     </div>
                 </div>
 
@@ -19,52 +19,26 @@
                     <form method="POST" enctype="multipart/form-data" action="">
                         @csrf
                         <div class="form-group row">
-                            <div class="col-md-6">Data File</div>
+                            <div class="col-md-6">Suppression File</div>
                             <div class="col-md-6">
-                                <input type="file" name="data_file" accept=".txt" class="form-control" required>
+                                <input type="file" name="suppression_file" accept=".txt" class="form-control" required>
                             </div>
-                            @error('data_file')
+                            @error('suppression_file')
                                 <div class="mt-1 text-12 text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="form-group row">
-                            <div class="col-md-6">ISP</div>
+                            <div class="col-md-6">Suppression Type</div>
                             <div class="col-md-6">
-                                <select name="isp" class="form-control select2" required>
-                                    <option value="" {{ old('isp') == '' ? 'selected' : '' }}>--SELECT</option>
-                                    @foreach (config('data-download.isps') as $isp)
-                                        <option value="{{ $isp['value'] }}"
-                                            {{ old('isp') == $isp['value'] ? 'selected' : '' }}>{{ $isp['name'] }}</option>
+                                <select name="type" class="form-control select2" required>
+                                    <option value="" {{ old('type') == '' ? 'selected' : '' }}>--SELECT</option>
+                                    @foreach (config('data-download.suppression-types') as $type)
+                                        <option value="{{ $type['value'] }}"
+                                            {{ old('type') == $type['value'] ? 'selected' : '' }}>{{ $type['name'] }}
+                                        </option>
                                     @endforeach
                                 </select>
-                                @error('isp')
-                                    <div class="mt-1 text-12 text-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-md-6">LIST ID</div>
-                            <div class="col-md-6"><input type="text" name="list_id" class="form-control"
-                                    value="{{ old('list_id') }}">
-                                @error('list_id')
-                                    <div class="mt-1 text-12 text-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-md-6">Sub Seg Id</div>
-                            <div class="col-md-6"><input type="text" name="sub_seg_id" class="form-control"
-                                    value="{{ old('sub_seg_id') }}">
-                                @error('sub_seg_id')
-                                    <div class="mt-1 text-12 text-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-md-6">Seg Id</div>
-                            <div class="col-md-6"><input type="text" name="seg_id" class="form-control"
-                                    value="{{ old('seg_id') }}">
-                                @error('seg_id')
+                                @error('type')
                                     <div class="mt-1 text-12 text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -85,7 +59,7 @@
             <div class="card">
                 <div class="card-header bg-primary">
                     <div class="card-title text-white">
-                        {{ __('Data Uploads') }}
+                        {{ __('Suppression Uploads') }}
                     </div>
                 </div>
                 <div class="card-body">
@@ -93,8 +67,8 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>ISP</th>
-                                <th>Data File</th>
+                                <th>Type</th>
+                                <th>Suppression File</th>
                                 <th>Status</th>
                                 <th>Records Processed</th>
                                 <th>Created At</th>
@@ -102,26 +76,26 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($dataUploads as $dataUpload)
+                            @forelse ($suppressionUploads as $suppressionUpload)
                                 <tr>
-                                    <td>{{ $dataUpload->id }}</td>
-                                    <td>{{ $dataUpload->isp }}</td>
-                                    <td>{{ $dataUpload->filename }}</td>
+                                    <td>{{ $suppressionUpload->id }}</td>
+                                    <td>{{ $suppressionUpload->type }}</td>
+                                    <td>{{ $suppressionUpload->filename }}</td>
                                     <td>
                                         <a href="#"
-                                            title="{{ $dataUpload->status == 'failed' ? $dataUpload->error : '' }}"
-                                            class="badge {{ ($dataUpload->status == 'failed'
+                                            title="{{ $suppressionUpload->status == 'failed' ? $suppressionUpload->error : '' }}"
+                                            class="badge {{ ($suppressionUpload->status == 'failed'
                                                     ? 'bg-danger'
-                                                    : $dataUpload->status == 'completed')
+                                                    : $suppressionUpload->status == 'completed')
                                                 ? 'bg-success'
                                                 : 'bg-warning' }}">
-                                            {{ ucfirst($dataUpload->status) }}
+                                            {{ ucfirst($suppressionUpload->status) }}
                                         </a>
                                     </td>
-                                    <td>{{ $dataUpload->count }}</td>
-                                    <td>{{ $dataUpload->created_at->diffForHumans() }}</td>
+                                    <td>{{ $suppressionUpload->count }}</td>
+                                    <td>{{ $suppressionUpload->created_at->diffForHumans() }}</td>
                                     <td>
-                                        <a href="{{ route('download.data-upload.delete', $dataUpload->id) }}"
+                                        <a href="{{ route('download.suppression-upload.delete', $suppressionUpload->id) }}"
                                             class="text-danger"><i class="ion ion-close-circled" title="Delete"></i></a>
                                     </td>
                                 </tr>

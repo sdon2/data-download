@@ -23,6 +23,7 @@
                         </a>
                         <ul class="dropdown-menu mt-2 mt-md-4" aria-labelledby="navbarDropdown" data-bs-popper="none">
                             <li><a class="dropdown-item" href="{{ route('download.data-upload') }}">Data Upload</a></li>
+                            <li><a class="dropdown-item" href="{{ route('download.suppression-upload') }}">Suppression Upload</a></li>
                         </ul>
                     </li>
                 </ul>

@@ -43,6 +43,12 @@ return [
             'throw' => false,
         ],
 
+        'suppression-uploads' => [
+            'driver' => 'local',
+            'root' => storage_path('app/suppression-uploads'),
+            'throw' => false,
+        ],
+
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),

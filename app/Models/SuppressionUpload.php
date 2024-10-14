@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
-class DataUpload extends Model implements HasMedia
+class SuppressionUpload extends Model implements HasMedia
 {
     use HasFactory, InteractsWithMedia;
 
@@ -20,8 +20,8 @@ class DataUpload extends Model implements HasMedia
 
     public function registerMediaCollections(): void
     {
-        $this->addMediaCollection('data-uploads')
-            ->useDisk('data-uploads')
+        $this->addMediaCollection('suppression-uploads')
+            ->useDisk('suppression-uploads')
             ->acceptsMimeTypes(['text/plain'])
             ->singleFile();
     }

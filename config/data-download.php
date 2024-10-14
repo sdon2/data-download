@@ -27,5 +27,32 @@ return [
             'value' => 'aol',
             'short_code' => 'aol',
         ],
+    ],
+
+    'suppression-types' => [
+        [
+            'name' => 'Offer',
+            'value' => 'offer',
+        ],
+        [
+            'name' => 'Complaints',
+            'value' => 'complaints',
+        ],
+        [
+            'name' => 'Opt Out',
+            'value' => 'optout',
+        ],
+        [
+            'name' => 'Bad Mail',
+            'value' => 'badmail',
+        ],
+        [
+            'name' => 'ESP Bad Mail',
+            'value' => 'espbadmail',
+        ],
+        [
+            'name' => 'Unsubscribe',
+            'value' => 'unsubscribe',
+        ],
     ]
 ];
