@@ -21,7 +21,7 @@
                             <i class="typcn typcn-document"></i>
                             Download
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown" data-bs-popper="none">
+                        <ul class="dropdown-menu mt-2 mt-md-4" aria-labelledby="navbarDropdown" data-bs-popper="none">
                             <li><a class="dropdown-item" href="{{ route('download.data-upload') }}">Data Upload</a></li>
                         </ul>
                     </li>
