@@ -36,13 +36,13 @@
     "src": "node_modules/typicons.font/src/font/typicons.woff2"
   },
   "resources/js/app.js": {
-    "file": "assets/app-BmJO1NAV.js",
+    "file": "assets/app-D3oGaHqC.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-uoN04E3a.css",
+    "file": "assets/app-jSVOSDso.css",
     "src": "resources/sass/app.scss",
     "isEntry": true
   },

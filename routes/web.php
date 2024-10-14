@@ -15,4 +15,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::group(['prefix' => '/download', 'as' => 'download.'], function () {
     Route::get('/data-upload', [DataUploadController::class, 'index'])->name('data-upload');
     Route::post('/data-upload', [DataUploadController::class, 'upload']);
+    Route::get('/data-upload/delete/{dataUpload}', [DataUploadController::class, 'delete'])->name('data-upload.delete');
 });

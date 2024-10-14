@@ -2,13 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Data extends Model
+class Job extends Model
 {
-    protected $table = 'data';
+    use HasFactory;
 
     protected $guarded = [];
-
-    public $timestamps = false;
 }

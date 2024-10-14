@@ -13,9 +13,11 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/sass/fonts/fonts.scss', 'resources/js/app.js'])
+    @vite(['resources/sass/app.scss', 'resources/sass/fonts/fonts.scss'])
+
+    @yield('styles')
+
 </head>
 
 <body>
@@ -30,6 +32,14 @@
             </div>
         </div>
     </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" crossorigin="anonymous"></script>
+
+    @vite(['resources/js/app.js'])
+
+    @yield('scripts')
+
 </body>
 
 </html>
