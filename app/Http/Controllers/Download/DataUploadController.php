@@ -55,7 +55,7 @@ class DataUploadController extends Controller
         try {
 
             if ($dataUpload->status != 'failed') {
-                throw new Exception('Data cannot be deleted');
+                throw new Exception(sprintf("Data with status <b>'%s'</b> cannot be deleted", $dataUpload->status));
             }
 
             $dataUpload->delete();
