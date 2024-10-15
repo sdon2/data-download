@@ -34,6 +34,7 @@ class SuppressionUploadJob implements ShouldQueue
 
         try {
             foreach ($this->process($filename) as $line) {
+
                 $this->validate($line);
 
                 Suppression::query()->create([
@@ -50,7 +51,6 @@ class SuppressionUploadJob implements ShouldQueue
             $this->suppressionUpload->update([
                 'status' => 'completed',
             ]);
-
         } catch (Throwable $ex) {
             $this->suppressionUpload->update([
                 'status' => 'failed',
@@ -63,8 +63,14 @@ class SuppressionUploadJob implements ShouldQueue
     {
         $file = fopen($filename, 'r');
 
-        while ($line = trim(fgets($file))) {
-            yield $line;
+        while (!feof($file)) {
+            $line = trim(fgets($file));
+
+            if ($line) {
+                yield $line;
+            } else {
+                continue;
+            }
         }
 
         fclose($file);
@@ -72,7 +78,6 @@ class SuppressionUploadJob implements ShouldQueue
         if ($this->sleepTime) {
             sleep($this->sleepTime);
         }
-
     }
 
     private function validate($data) {}

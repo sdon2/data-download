@@ -37,6 +37,7 @@ class DataUploadJob implements ShouldQueue
 
         try {
             foreach ($this->process($filename) as $extracted) {
+
                 $this->validate($extracted);
 
                 Data::query()->create($extracted);
@@ -50,7 +51,6 @@ class DataUploadJob implements ShouldQueue
             $this->dataUpload->update([
                 'status' => 'completed',
             ]);
-
         } catch (Throwable $ex) {
             $this->dataUpload->update([
                 'status' => 'failed',
@@ -63,29 +63,37 @@ class DataUploadJob implements ShouldQueue
     {
         $file = fopen($filename, 'r');
 
-        while ($line = trim(fgets($file))) {
-            $fields = [
-                'emid',
-                'email',
-                'ds',
-                'isp',
-                'edate',
-                'e_ip',
-                'fname',
-                'lname',
-                'suburl',
-                'subdate',
-                'click',
-                'open',
-                'flag'
-            ];
-            $extracted = explode('|', $line);
+        while (!feof($file)) {
 
-            if (count($extracted) !== count($fields)) {
-                throw new Exception('Invalid data format');
+            try {
+
+                $line = trim(fgets($file));
+
+                $fields = [
+                    'emid',
+                    'email',
+                    'ds',
+                    'isp',
+                    'edate',
+                    'e_ip',
+                    'fname',
+                    'lname',
+                    'suburl',
+                    'subdate',
+                    'click',
+                    'open',
+                    'flag'
+                ];
+                $extracted = explode('|', $line);
+
+                if (count($extracted) !== count($fields)) {
+                    throw new DataException('Invalid data format');
+                }
+
+                yield array_combine($fields, $extracted);
+            } catch (DataException $ex) {
+                continue;
             }
-
-            yield array_combine($fields, $extracted);
         }
 
         fclose($file);
@@ -93,7 +101,6 @@ class DataUploadJob implements ShouldQueue
         if ($this->sleepTime) {
             sleep($this->sleepTime);
         }
-
     }
 
     private function validate($data) {}
