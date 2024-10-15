@@ -64,11 +64,15 @@ class SuppressionUploadJob implements ShouldQueue
         $file = fopen($filename, 'r');
 
         while (!feof($file)) {
-            $line = trim(fgets($file));
+            try {
+                $line = trim(fgets($file));
 
-            if ($line) {
-                yield $line;
-            } else {
+                if ($line) {
+                    yield $line;
+                } else {
+                    new DataException('Invalid data format');
+                }
+            } catch (Throwable $ex) {
                 continue;
             }
         }
