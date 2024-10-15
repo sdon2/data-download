@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('click', 255)->nullable();
             $table->string('open', 255)->nullable();
             $table->string('flag', 255)->nullable();
+            $table->string('identifier')->nullable();
         });
     }
 

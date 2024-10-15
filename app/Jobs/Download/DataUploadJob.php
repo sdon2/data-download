@@ -82,9 +82,11 @@ class DataUploadJob implements ShouldQueue
                     'subdate',
                     'click',
                     'open',
-                    'flag'
+                    'flag',
+                    'identifier',
                 ];
                 $extracted = explode('|', $line);
+                array_push($extracted, str_replace('.txt', '', $this->dataUpload->filename));
 
                 if (count($extracted) !== count($fields)) {
                     throw new DataException('Invalid data format');
