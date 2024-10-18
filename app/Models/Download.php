@@ -14,6 +14,11 @@ class Download extends Model
         'updated_at' => 'datetime',
     ];
 
+    public function getIdentifierAttribute()
+    {
+        return sprintf('%s_%s%s%s', $this->isp, $this->list_id, $this->sub_seg_id, $this->seg_id);
+    }
+
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('downloads')

@@ -39,6 +39,7 @@ class SuppressionUploadJob implements ShouldQueue
 
                 Suppression::query()->create([
                     'type' => $this->suppressionUpload->type,
+                    'offer_id' => $this->suppressionUpload->offer_id,
                     'data' => $line,
                 ]);
 

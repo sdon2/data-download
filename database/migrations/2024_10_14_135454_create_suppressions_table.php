@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('suppressions', function (Blueprint $table) {
             $table->id();
             $table->string('type');
+            $table->string('offer_id')->nullable();
             $table->text('data')->nullable();
         });
     }
