@@ -9,7 +9,6 @@ use App\Jobs\Download\Suppressions\EspBadmailSuppression;
 use App\Jobs\Download\Suppressions\OfferSuppression;
 use App\Jobs\Download\Suppressions\OptOutSuppression;
 use App\Jobs\Download\Suppressions\UnsubscribeSuppression;
-use App\Models\Data;
 use App\Models\Download;
 use App\Models\Suppression;
 use App\Traits\InteractsWithTempTable;
@@ -45,25 +44,33 @@ class DownloadJob implements ShouldQueue
             'dnd_suppression' => DndSuppression::class,
         ];
 
+        $dataClass = (new class {
+            use InteractsWithTempTable;
+        });
+
+        $dataQuery = $dataClass
+            ->createTable($this->download->identifier, "SELECT * FROM data WHERE identifier = '" . $this->download->identifier . "'")
+            ->getModel()->query();
+
         foreach ($suppressions as $name => $suppression) {
             if (is_callable($suppression)) {
-                $dataClass = (new class {
-                    use InteractsWithTempTable;
-                });
-
-                $dataQuery = $dataClass
-                    ->createTable($this->download->identifier, "SELECT * FROM data WHERE identifier = '" . $this->download->identifier . "'")
-                    ->getModel()->query();
-
-                    if ($name == 'offer_suppression') {
-                        $suppressionQuery = Suppression::query()->where('type', 'offer')
-                            ->where('offer_id', $this->download->offer_id);
-                    } else {
-                        $suppressionQuery = Suppression::query()->where('type', str_replace('_suppression', '', $name));
-                    }
+                if ($name == 'offer_suppression') {
+                    $suppressionQuery = Suppression::query()->where('type', 'offer')
+                        ->where('offer_id', $this->download->offer_id);
+                } else {
+                    $suppressionQuery = Suppression::query()->where('type', str_replace('_suppression', '', $name));
+                }
 
                 (new $suppression())->handle($this->download, $dataQuery, $suppressionQuery);
             }
         }
+
+        $ouputFile = fopen($this->download->output_file, 'w');
+        foreach ($dataQuery->get() as $data) {
+            fwrite($ouputFile, $data->join('|') . "\r\n");
+        }
+        fclose($ouputFile);
+
+        $dataClass->deleteTable();
     }
 }

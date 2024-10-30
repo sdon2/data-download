@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Download\DataDownloadController;
 use App\Http\Controllers\Download\DataUploadController;
 use App\Http\Controllers\Download\SuppressionUploadController;
 use Illuminate\Support\Facades\Auth;
@@ -22,4 +23,6 @@ Route::group(['prefix' => '/download', 'as' => 'download.'], function () {
     Route::post('/suppression-upload', [SuppressionUploadController::class, 'upload']);
     Route::get('/suppression-upload/delete/{dataUpload}', [SuppressionUploadController::class, 'delete'])->name('suppression-upload.delete');
 
+    Route::get('/data-download', [DataDownloadController::class, 'index'])->name('data-download');
+    Route::post('/data-download', [DataDownloadController::class, 'download']);
 });
