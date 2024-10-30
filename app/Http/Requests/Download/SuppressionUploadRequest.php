@@ -24,6 +24,7 @@ class SuppressionUploadRequest extends FormRequest
         return [
             'suppression_file' => ['required', 'file'],
             'type' => ['required', 'string'],
+            'offer_id' => ['required_if:type,offer'],
         ];
     }
 
@@ -32,6 +33,7 @@ class SuppressionUploadRequest extends FormRequest
         return [
             'suppression_file' => 'Suppression File',
             'type' => 'Suppression Type',
+            'offer_id' => 'Offer Id',
         ];
     }
 }

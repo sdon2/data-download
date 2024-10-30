@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('suppression_uploads', function (Blueprint $table) {
             $table->id();
             $table->string('type', 255);
+            $table->string('offer_id')->nullable();
             $table->string('filename', 255);
             $table->unsignedBigInteger('count')->default(0);
             $table->enum('status', ['processing', 'completed', 'failed'])->default('processing');

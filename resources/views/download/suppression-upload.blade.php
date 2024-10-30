@@ -44,6 +44,15 @@
                             </div>
                         </div>
                         <div class="form-group row">
+                            <div class="col-md-6">Offer Id</div>
+                            <div class="col-md-6">
+                                <input type="text" name="offer_id" class="form-control">
+                            </div>
+                            @error('offer_id')
+                                <div class="mt-1 text-12 text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="form-group row">
                             <div class="col-md-6 offset-md-6">
                                 <button type="submit" class="btn btn-primary">Upload</button>
                                 <button type="reset" class="btn btn-danger">Reset</button>

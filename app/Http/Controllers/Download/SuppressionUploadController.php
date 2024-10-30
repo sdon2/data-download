@@ -29,6 +29,7 @@ class SuppressionUploadController extends Controller
 
             $upload = SuppressionUpload::create([
                 'type' => $input['type'],
+                'offer_id' => $input['offer_id'],
                 'filename' => $suppression_file_name,
             ]);
 
