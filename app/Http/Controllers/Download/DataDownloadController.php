@@ -22,24 +22,16 @@ class DataDownloadController extends Controller
 
     public function download(DataDownloadRequest $request)
     {
+
         try {
 
-            $input = $request->validated();
+            $data = $request->validated();
 
-            $isp = collect(config('data-download.isps'))->firstWhere('value', $input['isp']);
+            $download = Download::create($data);
 
-            $isp = $isp['short_code'];
+            dispatch(new DownloadJob($download));
 
-            $data_file_name = sprintf('%s_%s%s%s.txt', $isp, $input['list_id'], $input['sub_seg_id'], $input['seg_id']);
-
-            $upload = Download::create([
-                'isp' => $isp,
-                'filename' => $data_file_name,
-            ]);
-
-            dispatch(new DownloadJob($upload));
-
-            return back()->with('success', 'Data uploaded successfully');
+            return back()->with('success', 'Data dowload added successfully');
 
         } catch (Exception $e) {
             throw ValidationException::withMessages([

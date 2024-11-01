@@ -11,9 +11,13 @@ use App\Jobs\Download\Suppressions\OptOutSuppression;
 use App\Jobs\Download\Suppressions\UnsubscribeSuppression;
 use App\Models\Download;
 use App\Models\Suppression;
-use App\Traits\InteractsWithTempTable;
+use App\Models\TempData;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
+use Throwable;
 
 class DownloadJob implements ShouldQueue
 {
@@ -34,43 +38,52 @@ class DownloadJob implements ShouldQueue
      */
     public function handle(): void
     {
-        $suppressions = [
-            'offer_suppression' => OfferSuppression::class,
-            'complaints_suppression' => ComplaintSuppression::class,
-            'optout_suppression' => OptOutSuppression::class,
-            'unsubsribe_suppression' => UnsubscribeSuppression::class,
-            'badmail_suppression' => BadmailSuppression::class,
-            'espbadmail_suppression' => EspBadmailSuppression::class,
-            'dnd_suppression' => DndSuppression::class,
-        ];
+        try {
+            $suppressions = [
+                'offer' => OfferSuppression::class,
+                'complaints' => ComplaintSuppression::class,
+                'optout' => OptOutSuppression::class,
+                'unsubsribe' => UnsubscribeSuppression::class,
+                'badmail' => BadmailSuppression::class,
+                'espbadmail' => EspBadmailSuppression::class,
+                'dnd' => DndSuppression::class,
+            ];
 
-        $dataClass = (new class {
-            use InteractsWithTempTable;
-        });
+            $sql = sprintf("SELECT * FROM data WHERE identifier = '%s'", $this->download->identifier);
+            TempData::importData($sql);
+            $dataQuery = TempData::query();
 
-        $dataQuery = $dataClass
-            ->createTable($this->download->identifier, "SELECT * FROM data WHERE identifier = '" . $this->download->identifier . "'")
-            ->getModel()->query();
+            foreach ($suppressions as $name => $suppression) {
+                if (!array_key_exists($name, $this->download->suppressions)) continue;
+                if (is_callable($suppression)) {
+                    if ($name == 'offer') {
+                        $suppressionQuery = Suppression::query()->where('type', 'offer')
+                            ->where('offer_id', $this->download->offer_id);
+                    } else {
+                        $suppressionQuery = Suppression::query()->where('type', str_replace('_suppression', '', $name));
+                    }
 
-        foreach ($suppressions as $name => $suppression) {
-            if (is_callable($suppression)) {
-                if ($name == 'offer_suppression') {
-                    $suppressionQuery = Suppression::query()->where('type', 'offer')
-                        ->where('offer_id', $this->download->offer_id);
-                } else {
-                    $suppressionQuery = Suppression::query()->where('type', str_replace('_suppression', '', $name));
+                    (new $suppression($this->download))->handle($dataQuery, $suppressionQuery);
                 }
-
-                (new $suppression())->handle($this->download, $dataQuery, $suppressionQuery);
             }
-        }
 
-        $ouputFile = fopen($this->download->output_file, 'w');
-        foreach ($dataQuery->get() as $data) {
-            fwrite($ouputFile, $data->join('|') . "\r\n");
-        }
-        fclose($ouputFile);
+            $outputFile = '/tmp/' . (time()) . '.txt';
+            TempData::exportTable($outputFile);
 
-        $dataClass->deleteTable();
+            $this->download->addMediaFromString($outputFile);
+
+            TempData::truncateTable();
+
+            $this->download->update([
+                'status' => 'completed',
+            ]);
+        } catch (Throwable $ex) {
+            $this->download->update([
+                'status' => 'failed',
+                'error' => $ex->getMessage(),
+            ]);
+
+            Log::error($ex->getTraceAsString());
+        }
     }
 }

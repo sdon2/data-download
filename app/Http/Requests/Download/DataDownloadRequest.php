@@ -22,7 +22,17 @@ class DataDownloadRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'identifier' => ['required'],
+            'suppressions' => ['required', 'array'],
+            'offer_id' => ['nullable', 'required_if:suppressions.offer,1']
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'suppressions.required' => 'One of the suppressions must be selected',
+            'offer_id.required_if' => 'Offer Id is required if offer suppression is selected',
         ];
     }
 }

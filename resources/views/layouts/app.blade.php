@@ -34,7 +34,7 @@
     </div>
 
     <!-- Scripts -->
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" crossorigin="anonymous"></script>
+    <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
 
     @vite(['resources/js/app.js'])
 

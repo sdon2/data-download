@@ -5,18 +5,19 @@ namespace App\Jobs\Download\Suppressions;
 use App\Models\Download;
 use Illuminate\Database\Eloquent\Builder;
 
-class FblSuppression implements ISuppression
+class FblSuppression extends Suppression
 {
-    public function handle(Download $download, Builder $dataQuery, Builder $suppressionQuery)
+    public function handle(Builder $dataQuery, Builder $suppressionQuery)
     {
-        $suppressionQuery
-        ->get(['data'])
+        $download = $this->download;
+
+        collect($suppressionQuery->pluck('data'))
         ->each(function ($suppression) use ($download, $dataQuery) {
-                list($emid, $offerId) = explode('|', $suppression->data);
+                list($emid, $offerId) = explode('|', $suppression);
                 $result = $dataQuery->where('emid', $emid)->delete();
                 if ($result) {
                     $download->update([
-                        'suppression_count' => $download->suppression_count++,
+                        'suppressed_count' => $download->suppressed_count++,
                     ]);
                 }
             });

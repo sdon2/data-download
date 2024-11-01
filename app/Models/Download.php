@@ -4,20 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Download extends Model
+class Download extends Model implements HasMedia
 {
-    use HasFactory;
+    use HasFactory, InteractsWithMedia;
+
+    protected $guarded = [];
 
     public $casts = [
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
+        'suppressions' => 'array',
     ];
-
-    public function getIdentifierAttribute()
-    {
-        return sprintf('%s_%s%s%s', $this->isp, $this->list_id, $this->sub_seg_id, $this->seg_id);
-    }
 
     public function registerMediaCollections(): void
     {

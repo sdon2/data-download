@@ -54,5 +54,9 @@ return [
             'name' => 'Unsubscribe',
             'value' => 'unsubscribe',
         ],
+        [
+            'name' => 'DND',
+            'value' => 'dnd',
+        ],
     ]
 ];

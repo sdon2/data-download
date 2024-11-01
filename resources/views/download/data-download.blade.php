@@ -39,8 +39,8 @@
                             <div class="col-md-6">
                                 <div class="d-flex">
                                     <div>
-                                        <input type="checkbox" name="offer_suppression" id="offer_suppression"
-                                            {{ old('offer_suppression') ? 'checked' : '' }}>
+                                        <input type="checkbox" name="suppressions[offer]" value="1"
+                                            {{ old('suppressions.offer') ? 'checked' : '' }}>
                                     </div>
                                     <div class="form-check">
                                         <input type="text" name="offer_id" class="form-control"
@@ -52,13 +52,16 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <div class="col-md-6">Opt Out Suppression</div>
-                            <div class="col-md-6">
-                                <input type="checkbox" name="optout_suppression" id="optout_suppression"
-                                    {{ old('optout_suppression') ? 'checked' : '' }}>
+                        @foreach (collect(config('data-download.suppression-types'))->where('value', '!=', 'offer') as $type)
+                            <div class="form-group row">
+                                <div class="col-md-6">{{ $type['name'] }} Suppression</div>
+                                <div class="col-md-6">
+                                    <input type="checkbox" name="suppressions[{{ $type['value'] }}]"
+                                        id="{{ $type['value'] }}" value="1"
+                                        {{ old('suppressions.' . $type['value']) ? 'checked' : '' }}>
+                                </div>
                             </div>
-                        </div>
+                        @endforeach
                         <div class="form-group row">
                             <div class="col-md-6 offset-md-6">
                                 <button type="submit" class="btn btn-primary">Download</button>
@@ -83,20 +86,35 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>ISP</th>
-                                <th>Data File</th>
+                                <th>Identifier</th>
+                                <th>Suppressions</th>
                                 <th>Status</th>
-                                <th>Records Processed</th>
+                                <th>Count</th>
+                                <th>Suppressed</th>
                                 <th>Created At</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             @forelse ($dataDownloads as $dataDownload)
-                                //
+                                <tr>
+                                    <td>{{ $dataDownload->id }}</td>
+                                    <td>{{ $dataDownload->identifier }}</td>
+                                    <td>{{ collect($dataDownload->suppressions)->keys()->join(', ') }}</td>
+                                    <td>
+                                        <a href="#"
+                                            title="{{ $dataDownload->status == 'failed' ? $dataDownload->error : '' }}"
+                                            class="badge {{ $dataDownload->status == 'failed' ? 'bg-danger' : ($dataDownload->status == 'completed' ? 'bg-success' : 'bg-warning') }}">
+                                            {{ ucfirst($dataDownload->status) }}
+                                        </a>
+                                    </td>
+                                    <td>{{ $dataDownload->data_count }}</td>
+                                    <td>{{ $dataDownload->suppressed_count }}</td>
+                                    <td></td>
+                                </tr>
                             @empty
                                 <tr>
-                                    <td colspan="7" class="text-center">No Data Downloads</td>
+                                    <td colspan="8" class="text-center">No Data Downloads</td>
                                 </tr>
                             @endforelse
                         </tbody>
@@ -108,11 +126,11 @@
 @endsection
 
 @section('styles')
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="{{ asset('vendor/select2/css/select2.min.css') }}" rel="stylesheet" />
 @endsection
 
 @section('scripts')
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js" defer></script>
+    <script src="{{ asset('vendor/select2/js/select2.min.js') }}" defer></script>
     <script>
         $(document).ready(function() {
             $('.select2').select2();

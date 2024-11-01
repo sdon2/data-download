@@ -4,18 +4,20 @@ namespace App\Jobs\Download\Suppressions;
 
 use App\Models\Download;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Log;
 
-class OfferSuppression implements ISuppression
+class OfferSuppression extends Suppression
 {
-    public function handle(Download $download, Builder $dataQuery, Builder $suppressionQuery)
+    public function handle(Builder $dataQuery, Builder $suppressionQuery)
     {
-        $suppressionQuery
-            ->get(['data'])
+        $download = $this->download;
+
+        collect($suppressionQuery->pluck('data'))
             ->each(function ($suppression) use ($download, $dataQuery) {
-                $result = $dataQuery->whereRaw('MD5(email) = ?', [$suppression->data])->delete();
+                $result = $dataQuery->whereRaw('MD5(email) = ?', [$suppression])->delete();
                 if ($result) {
                     $download->update([
-                        'suppression_count' => $download->suppression_count++,
+                        'suppressed_count' => $download->suppressed_count++,
                     ]);
                 }
             });

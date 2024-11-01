@@ -30,7 +30,7 @@
                         <div class="form-group row">
                             <div class="col-md-6">Suppression Type</div>
                             <div class="col-md-6">
-                                <select name="type" class="form-control select2" required>
+                                <select id="type" name="type" class="form-control select2" required>
                                     <option value="" {{ old('type') == '' ? 'selected' : '' }}>--SELECT</option>
                                     @foreach (config('data-download.suppression-types') as $type)
                                         <option value="{{ $type['value'] }}"
@@ -43,7 +43,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="form-group row">
+                        <div class="form-group row" id="offer_id_row">
                             <div class="col-md-6">Offer Id</div>
                             <div class="col-md-6">
                                 <input type="text" name="offer_id" class="form-control">
@@ -122,14 +122,21 @@
 @endsection
 
 @section('styles')
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="{{ asset('vendor/select2/css/select2.min.css') }}" rel="stylesheet" />
 @endsection
 
 @section('scripts')
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js" defer></script>
+    <script src="{{ asset('vendor/select2/js/select2.min.js') }}" defer></script>
     <script>
         $(document).ready(function() {
             $('.select2').select2();
+
+            $('#type').on('change', function () {
+                var row = $('#offer_id_row');
+                $(this).val() == 'offer' ? row.show() : row.hide();
+            });
+
+            $('#type').trigger('change');
         });
     </script>
 @endsection
