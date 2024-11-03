@@ -26,8 +26,9 @@ class TempData extends Model
     {
         $file = fopen($path, 'w');
         $query = (new static)->query();
-        foreach ($query->get() as $entry) {
-            fputs($file, $entry->join('|'));
+        $data = $query->get();
+        foreach ($data as $entry) {
+            fputs($file, collect($entry)->join('|') . "\n");
         }
         fclose($file);
     }

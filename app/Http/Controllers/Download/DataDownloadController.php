@@ -55,4 +55,14 @@ class DataDownloadController extends Controller
             return back()->with('error', $e->getMessage());
         }
     }
+
+    public function downloadFile(Download $dataDownload)
+    {
+        try {
+            $file = $dataDownload->getFirstMedia('downloads');
+            return response()->download($file->getPath(), $file->file_name);
+        } catch (Exception $e) {
+            return back()->with('error', $e->getMessage());
+        }
+    }
 }

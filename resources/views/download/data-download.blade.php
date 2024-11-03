@@ -111,6 +111,12 @@
                                     <td>{{ $dataDownload->data_count }}</td>
                                     <td>{{ $dataDownload->suppressed_count }}</td>
                                     <td></td>
+                                    <td>
+                                        @if ($dataDownload->hasMedia('downloads'))
+                                            <a href="{{ route('download.data-download.file', $dataDownload->id) }}"
+                                                target="_blank" class="ion ion-android-download text-success"></a>
+                                        @endif
+                                    </td>
                                 </tr>
                             @empty
                                 <tr>

@@ -25,4 +25,5 @@ Route::group(['prefix' => '/download', 'as' => 'download.'], function () {
 
     Route::get('/data-download', [DataDownloadController::class, 'index'])->name('data-download');
     Route::post('/data-download', [DataDownloadController::class, 'download']);
+    Route::get('/data-download/file/{dataDownload}', [DataDownloadController::class, 'downloadFile'])->name('data-download.file');
 });

@@ -68,9 +68,12 @@ class DownloadJob implements ShouldQueue
             }
 
             $outputFile = '/tmp/' . (time()) . '.txt';
+
             TempData::exportTable($outputFile);
 
-            $this->download->addMediaFromString($outputFile);
+            $this->download->addMedia($outputFile)
+                ->preservingOriginal()
+                ->toMediaCollection('downloads');
 
             TempData::truncateTable();
 
