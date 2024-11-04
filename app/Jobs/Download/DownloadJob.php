@@ -50,7 +50,11 @@ class DownloadJob implements ShouldQueue
             ];
 
             $sql = sprintf("SELECT * FROM data WHERE identifier = '%s'", $this->download->identifier);
+
             TempData::importData($sql);
+
+            TempData::setDataCount($this->download);
+
             $dataQuery = TempData::query();
 
             foreach ($suppressions as $name => $suppression) {
