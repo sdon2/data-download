@@ -104,8 +104,10 @@
                                     <td>{{ $suppressionUpload->count }}</td>
                                     <td>{{ $suppressionUpload->created_at->diffForHumans() }}</td>
                                     <td>
-                                        <a href="{{ route('download.suppression-upload.delete', $suppressionUpload->id) }}"
-                                            class="text-danger"><i class="ion ion-close-circled" title="Delete"></i></a>
+                                        @if ($suppressionUpload->status == 'failed')
+                                            <a href="{{ route('download.suppression-upload.delete', $suppressionUpload->id) }}"
+                                                class="text-danger"><i class="ion ion-close-circled" title="Delete"></i></a>
+                                        @endif
                                     </td>
                                 </tr>
                             @empty
@@ -131,7 +133,7 @@
         $(document).ready(function() {
             $('.select2').select2();
 
-            $('#type').on('change', function () {
+            $('#type').on('change', function() {
                 var row = $('#offer_id_row');
                 $(this).val() == 'offer' ? row.show() : row.hide();
             });

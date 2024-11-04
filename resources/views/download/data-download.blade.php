@@ -110,11 +110,15 @@
                                     </td>
                                     <td>{{ $dataDownload->data_count }}</td>
                                     <td>{{ $dataDownload->suppressed_count }}</td>
-                                    <td></td>
+                                    <td>{{ $dataDownload->created_at->diffForHumans() }}</td>
                                     <td>
                                         @if ($dataDownload->hasMedia('downloads'))
                                             <a href="{{ route('download.data-download.file', $dataDownload->id) }}"
                                                 target="_blank" class="ion ion-android-download text-success"></a>
+                                        @endif
+                                        @if ($dataDownload->status == 'failed')
+                                            <a href="{{ route('download.data-download.delete', $dataDownload->id) }}"
+                                                class="text-danger"><i class="ion ion-close-circled" title="Delete"></i></a>
                                         @endif
                                     </td>
                                 </tr>

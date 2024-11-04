@@ -121,8 +121,10 @@
                                     <td>{{ $dataUpload->count }}</td>
                                     <td>{{ $dataUpload->created_at->diffForHumans() }}</td>
                                     <td>
-                                        <a href="{{ route('download.data-upload.delete', $dataUpload->id) }}"
-                                            class="text-danger"><i class="ion ion-close-circled" title="Delete"></i></a>
+                                        @if ($dataUpload->status == 'failed')
+                                            <a href="{{ route('download.data-upload.delete', $dataUpload->id) }}"
+                                                class="text-danger"><i class="ion ion-close-circled" title="Delete"></i></a>
+                                        @endif
                                     </td>
                                 </tr>
                             @empty
