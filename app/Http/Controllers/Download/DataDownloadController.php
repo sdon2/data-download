@@ -10,9 +10,12 @@ use App\Models\Download;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
+use App\Traits\HasDataFileFunctions;
 
 class DataDownloadController extends Controller
 {
+    use HasDataFileFunctions;
+
     public function index(Request $request)
     {
         $dataDownloads = Download::query()->latest()->paginate(10);
@@ -21,10 +24,17 @@ class DataDownloadController extends Controller
 
     public function download(DataDownloadRequest $request)
     {
+        $identifier = explode('.txt', $this->getDataFileName($request->isp, $request->list_id, $request->sub_seg_id, $request->seg_id))[0];
 
         try {
 
             $data = $request->validated();
+
+            $data = [
+                'identifier' => $identifier,
+                'suppressions' => $data['suppressions'],
+                'offer_id' => $data['offer_id'],
+            ];
 
             $download = Download::create($data);
 

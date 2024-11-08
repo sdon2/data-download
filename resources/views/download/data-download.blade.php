@@ -25,8 +25,8 @@
                                     <select name="isp" class="select2" style="width:200px" required>
                                         <option value="{{ old('isp') == '' ? 'selected' : '' }}">--SELECT</option>
                                         @foreach (config('data-download.isps') as $isp)
-                                            <option value="{{ $isp['value'] }}"
-                                              {{ old('isp') == $isp['value'] ? 'selected' : '' }}>{{ $isp['name'] }}</option>
+                                            <option value="{{ $isp['short_code'] }}"
+                                              {{ old('isp') == $isp['short_code'] ? 'selected' : '' }}>{{ $isp['name'] }}</option>
                                         @endforeach
                                     </select>
                                     @error('isp')
@@ -64,7 +64,7 @@
                             <div class="m-1 d-flex flex-column">
                                 <div>
                                     <label>
-                                        <input type="checkbox" name="suppresions[offer]" value="1" {{ old('suppressions.offer') ? 'checked' : '' }} />
+                                        <input type="checkbox" name="suppressions[offer]" value="1" {{ old('suppressions.offer') ? 'checked' : '' }} />
                                         Offer
                                     </label>
                                 </div>

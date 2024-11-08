@@ -49,7 +49,9 @@ class DownloadJob implements ShouldQueue
                 'dnd' => DndSuppression::class,
             ];
 
-            $sql = sprintf("SELECT * FROM data WHERE identifier = '%s'", $this->download->identifier);
+            $isp = explode('_', $this->download->identifier)[0];
+
+            $sql = sprintf("SELECT * FROM %s_data", $isp);
 
             TempData::importData($sql);
 

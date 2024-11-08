@@ -22,7 +22,10 @@ class DataDownloadRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'identifier' => ['required'],
+            'isp' => ['required'],
+            'list_id' => ['required', 'string', 'size:2'],
+            'sub_seg_id' => ['required', 'string', 'size:2'],
+            'seg_id' => ['required', 'string', 'size:5'],
             'suppressions' => ['required', 'array'],
             'offer_id' => ['nullable', 'required_if:suppressions.offer,1']
         ];
@@ -31,8 +34,18 @@ class DataDownloadRequest extends FormRequest
     public function messages()
     {
         return [
-            'suppressions.required' => 'One of the suppressions must be selected',
-            'offer_id.required_if' => 'Offer Id is required if offer suppression is selected',
+            'suppressions.required' => 'One of the suppressions must be selected.',
+            'offer_id.required_if' => 'Offer Id is required if offer suppression is selected.',
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'isp' => 'ISP',
+            'list_id' => 'List ID',
+            'sub_seg_id' => 'Sub Segment ID',
+            'seg_id' => 'Segment ID',
         ];
     }
 }

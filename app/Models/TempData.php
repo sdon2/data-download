@@ -25,7 +25,7 @@ class TempData extends Model
     public static function setDataCount(Download $download)
     {
         $count = (new static)->query()->count();
-        $download->query()->update([
+        $download->update([
             'data_count' => $count,
         ]);
     }
@@ -35,8 +35,13 @@ class TempData extends Model
         $file = fopen($path, 'w');
         $query = (new static)->query();
         $data = $query->get();
-        foreach ($data as $entry) {
-            fputs($file, collect($entry)->except(['identifier'])->join('|') . "\n");
+        if ($data->count()) {
+            foreach ($data as $entry) {
+                fputs($file, collect($entry)->except(['identifier'])->join('|') . "\n");
+            }
+        }
+        else {
+            fputs($file, 'No results found.');
         }
         fclose($file);
     }
