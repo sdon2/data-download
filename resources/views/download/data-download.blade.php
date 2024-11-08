@@ -12,58 +12,84 @@
                     </div>
                 </div>
 
-                <div class="card-body pb-1">
+                <div class="card-body pb-1 overflow-x-scroll">
 
                     @include('partials.messages')
 
                     <form method="POST" enctype="multipart/form-data" action="">
                         @csrf
-                        <div class="form-group row">
-                            <div class="col-md-6">Suppressions To Run On</div>
-                            <div class="col-md-6">
-                                <select name="identifier" class="form-control select2" required>
-                                    <option value="" {{ old('identifier') == '' ? 'selected' : '' }}>--SELECT</option>
-                                    @foreach ($identifiers as $identifier)
-                                        <option value="{{ $identifier }}"
-                                            {{ old('identifier') == $identifier ? 'selected' : '' }}>{{ $identifier }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                                @error('identifier')
-                                    <div class="mt-1 text-12 text-danger">{{ $message }}</div>
-                                @enderror
+                        <div class="d-flex pb-2">
+                            <div class="m-1 d-flex flex-column">
+                                <div>ISP</div>
+                                <div>
+                                    <select name="isp" class="select2" style="width:200px" required>
+                                        <option value="{{ old('isp') == '' ? 'selected' : '' }}">--SELECT</option>
+                                        @foreach (config('data-download.isps') as $isp)
+                                            <option value="{{ $isp['value'] }}"
+                                              {{ old('isp') == $isp['value'] ? 'selected' : '' }}>{{ $isp['name'] }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('isp')
+                                        <div class="mt-1 text-12 text-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-md-6">Offer Suppression</div>
-                            <div class="col-md-6">
-                                <div class="d-flex">
-                                    <div>
-                                        <input type="checkbox" name="suppressions[offer]" value="1"
-                                            {{ old('suppressions.offer') ? 'checked' : '' }}>
-                                    </div>
-                                    <div class="form-check">
-                                        <input type="text" name="offer_id" class="form-control"
-                                            value="{{ old('offer_id') }}">
-                                        @error('offer_id')
-                                            <div class="mt-1 text-12 text-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
+                            <div class="m-1 d-flex flex-column">
+                                <div>List Id</div>
+                                <div>
+                                    <input type="text" name="list_id" value="{{ old('list_id') }}" style="width:125px">
+                                    @error('list_id')
+                                        <div class="mt-1 text-12 text-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="m-1 d-flex flex-column">
+                                <div>Sub Seg Id</div>
+                                <div>
+                                    <input type="text" name="sub_seg_id" value="{{ old('sub_seg_id') }}" style="width:125px">
+                                    @error('sub_seg_id')
+                                        <div class="mt-1 text-12 text-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="m-1 d-flex flex-column">
+                                <div>Seg Id</div>
+                                <div>
+                                    <input type="text" name="seg_id" value="{{ old('seg_id') }}" style="width:125px">
+                                    @error('seg_id')
+                                        <div class="mt-1 text-12 text-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="m-1 d-flex flex-column">
+                                <div>
+                                    <label>
+                                        <input type="checkbox" name="suppresions[offer]" value="1" {{ old('suppressions.offer') ? 'checked' : '' }} />
+                                        Offer
+                                    </label>
+                                </div>
+                                <div>
+                                    <input type="text" name="offer_id" value="{{ old('offer_id') }}" style="width:100px">
+                                    @error('offer_id')
+                                        <div class="mt-1 text-12 text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
-                        @foreach (collect(config('data-download.suppression-types'))->where('value', '!=', 'offer') as $type)
-                            <div class="form-group row">
-                                <div class="col-md-6">{{ $type['name'] }} Suppression</div>
-                                <div class="col-md-6">
+                        <div class="d-flex justify-content-center pb-2">
+                            @foreach (collect(config('data-download.suppression-types'))->where('value', '!=', 'offer') as $type)
+                            <div class="m-1">
+                                <label style="width:100px">
                                     <input type="checkbox" name="suppressions[{{ $type['value'] }}]"
-                                        id="{{ $type['value'] }}" value="1"
-                                        {{ old('suppressions.' . $type['value']) ? 'checked' : '' }}>
-                                </div>
+                                    id="{{ $type['value'] }}" value="1"
+                                    {{ old('suppressions.' . $type['value']) ? 'checked' : '' }} />
+                                    {{ $type['name'] }}
+                                </label>
                             </div>
-                        @endforeach
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-6">
+                            @endforeach
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">Download</button>
                                 <button type="reset" class="btn btn-danger">Reset</button>
                             </div>

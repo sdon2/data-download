@@ -15,9 +15,8 @@ class DataDownloadController extends Controller
 {
     public function index(Request $request)
     {
-        $identifiers = Data::query()->distinct()->get(['identifier'])->pluck('identifier');
         $dataDownloads = Download::query()->latest()->paginate(10);
-        return view('download.data-download', ['dataDownloads' => $dataDownloads, 'identifiers' => $identifiers]);
+        return view('download.data-download', ['dataDownloads' => $dataDownloads]);
     }
 
     public function download(DataDownloadRequest $request)

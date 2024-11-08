@@ -10,6 +10,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Support\Facades\DB;
 use Throwable;
 
 class DataUploadJob implements ShouldQueue
@@ -40,7 +41,8 @@ class DataUploadJob implements ShouldQueue
 
                 $this->validate($extracted);
 
-                Data::query()->create($extracted);
+                $isp = explode('_', $this->dataUpload->filename)[0];
+                DB::table($isp . '_data')->insert($extracted);
 
                 $this->dataUpload->update([
                     'count' => $this->dataUpload->count + 1,

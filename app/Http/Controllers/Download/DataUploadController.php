@@ -9,9 +9,12 @@ use App\Models\DataUpload;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
+use App\Traits\HasDataFileFunctions;
 
 class DataUploadController extends Controller
 {
+    use HasDataFileFunctions;
+
     public function index(Request $request)
     {
         $dataUploads = DataUpload::query()->latest()->paginate(10);
@@ -28,7 +31,7 @@ class DataUploadController extends Controller
 
             $isp = $isp['short_code'];
 
-            $data_file_name = sprintf('%s_%s%s%s.txt', $isp, $input['list_id'], $input['sub_seg_id'], $input['seg_id']);
+            $data_file_name = $this->getDataFileName($isp, $input['list_id'], $input['sub_seg_id'], $input['seg_id']);
 
             $upload = DataUpload::create([
                 'isp' => $isp,
