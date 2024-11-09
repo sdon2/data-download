@@ -22,9 +22,9 @@
                             Download
                         </a>
                         <ul class="dropdown-menu mt-2 mt-md-4" aria-labelledby="navbarDropdown" data-bs-popper="none">
-                            <li class="nav-item {{ request()->routeIs('download.data-upload') ? 'active' : '' }}"><a class="dropdown-item" href="{{ route('download.data-upload') }}">Data Upload</a></li>
-                            <li class="nav-item {{ request()->routeIs('download.suppression-upload') ? 'active' : '' }}"><a class="dropdown-item" href="{{ route('download.suppression-upload') }}">Suppression Upload</a></li>
-                            <li class="nav-item {{ request()->routeIs('download.data-download') ? 'active' : '' }}"><a class="dropdown-item" href="{{ route('download.data-download') }}">Data Download</a></li>
+                            <li class="{{ request()->routeIs('download.data-upload') ? 'active' : '' }}"><a class="dropdown-item" href="{{ route('download.data-upload') }}">Data Upload</a></li>
+                            <li class="{{ request()->routeIs('download.suppression-upload') ? 'active' : '' }}"><a class="dropdown-item" href="{{ route('download.suppression-upload') }}">Suppression Upload</a></li>
+                            <li class="{{ request()->routeIs('download.data-download') ? 'active' : '' }}"><a class="dropdown-item" href="{{ route('download.data-download') }}">Data Download</a></li>
                         </ul>
                     </li>
                 </ul>
