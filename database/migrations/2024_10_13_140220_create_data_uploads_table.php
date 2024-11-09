@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('data_uploads', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->references('id')->on('users');
             $table->string('isp', 255);
             $table->string('filename', 255);
             $table->unsignedBigInteger('count')->default(0);

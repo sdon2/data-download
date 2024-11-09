@@ -2,14 +2,14 @@
 
 namespace App\Jobs\Download\Suppressions;
 
-use App\Models\Download;
+use App\Models\DataDownload;
 use Illuminate\Database\Eloquent\Builder;
 
 abstract class Suppression implements ISuppression
 {
     protected $download;
 
-    public function __construct(Download $download)
+    public function __construct(DataDownload $download)
     {
         if ($this->download) return;
 

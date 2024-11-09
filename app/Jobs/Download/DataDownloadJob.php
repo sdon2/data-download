@@ -9,7 +9,7 @@ use App\Jobs\Download\Suppressions\EspBadmailSuppression;
 use App\Jobs\Download\Suppressions\OfferSuppression;
 use App\Jobs\Download\Suppressions\OptOutSuppression;
 use App\Jobs\Download\Suppressions\UnsubscribeSuppression;
-use App\Models\Download;
+use App\Models\DataDownload;
 use App\Models\Suppression;
 use App\Models\TempData;
 use Illuminate\Contracts\Database\Eloquent\Builder;
@@ -19,11 +19,11 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 use Throwable;
 
-class DownloadJob implements ShouldQueue
+class DataDownloadJob implements ShouldQueue
 {
     use Queueable;
 
-    private Download $download;
+    private DataDownload $download;
 
     /**
      * Create a new job instance.

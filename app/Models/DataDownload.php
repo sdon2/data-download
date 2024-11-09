@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Download extends Model implements HasMedia
+class DataDownload extends Model implements HasMedia
 {
     use HasFactory, InteractsWithMedia;
 
@@ -18,6 +18,11 @@ class Download extends Model implements HasMedia
         'updated_at' => 'datetime',
         'suppressions' => 'array',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
 
     public function registerMediaCollections(): void
     {

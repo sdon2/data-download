@@ -93,20 +93,23 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
+                                <th>Created On</th>
+                                <th>Employee Id</th>
                                 <th>ISP</th>
                                 <th>Data File</th>
+                                <th>Count</th>
                                 <th>Status</th>
-                                <th>Records Processed</th>
-                                <th>Created At</th>
-                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             @forelse ($dataUploads as $dataUpload)
                                 <tr>
                                     <td>{{ $dataUpload->id }}</td>
+                                    <td>{{ $dataUpload->created_at->format('d-m-Y h:i:s A') }}</td>
+                                    <td>{{ $dataUpload->user->employee_id }}</td>
                                     <td>{{ $dataUpload->isp }}</td>
                                     <td>{{ $dataUpload->filename }}</td>
+                                    <td>{{ $dataUpload->count }}</td>
                                     <td>
                                         <a href="#"
                                             title="{{ $dataUpload->status == 'failed' ? $dataUpload->error : '' }}"
@@ -117,14 +120,6 @@
                                                 : 'bg-warning' }}">
                                             {{ ucfirst($dataUpload->status) }}
                                         </a>
-                                    </td>
-                                    <td>{{ $dataUpload->count }}</td>
-                                    <td>{{ $dataUpload->created_at->diffForHumans() }}</td>
-                                    <td>
-                                        @if ($dataUpload->status == 'failed')
-                                            <a href="{{ route('download.data-upload.delete', $dataUpload->id) }}"
-                                                class="text-danger"><i class="ion ion-close-circled" title="Delete"></i></a>
-                                        @endif
                                     </td>
                                 </tr>
                             @empty

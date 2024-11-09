@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="row justify-content-center mb-4">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header bg-primary">
                     <div class="card-title text-white">
@@ -18,7 +18,7 @@
 
                     <form method="POST" enctype="multipart/form-data" action="">
                         @csrf
-                        <div class="d-flex pb-2">
+                        <div class="d-flex justify-content-center pb-2">
                             <div class="m-1 d-flex flex-column">
                                 <div>ISP</div>
                                 <div>
@@ -75,6 +75,10 @@
                                     @enderror
                                 </div>
                             </div>
+                            <div class="m-1 d-flex flex-row">
+                                <button type="submit" class="btn btn-primary m-1">Download</button>
+                                <button type="reset" class="btn btn-danger m-1">Reset</button>
+                            </div>
                         </div>
                         <div class="d-flex justify-content-center pb-2">
                             @foreach (collect(config('data-download.suppression-types'))->where('value', '!=', 'offer') as $type)
@@ -87,12 +91,6 @@
                                 </label>
                             </div>
                             @endforeach
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">Download</button>
-                                <button type="reset" class="btn btn-danger">Reset</button>
-                            </div>
                         </div>
                     </form>
                 </div>

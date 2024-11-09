@@ -2,7 +2,7 @@
 
 namespace App\Jobs\Download\Suppressions;
 
-use App\Models\Download;
+use App\Models\DataDownload;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Log;
 

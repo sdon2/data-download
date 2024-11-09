@@ -18,6 +18,11 @@ class DataUpload extends Model implements HasMedia
         'updated_at' => 'datetime',
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('data-uploads')

@@ -15,7 +15,7 @@ class SuppressionUploadController extends Controller
 {
     public function index(Request $request)
     {
-        $suppressionUploads = SuppressionUpload::query()->latest()->paginate(10);
+        $suppressionUploads = auth()->user()->suppression_uploads()->latest()->paginate(10);
         return view('download.suppression-upload', ['suppressionUploads' => $suppressionUploads]);
     }
 
@@ -28,6 +28,7 @@ class SuppressionUploadController extends Controller
             $suppression_file_name = sprintf('%s_%s.txt', $input['type'], Carbon::now()->format('Y-m-d.H.i.s'));
 
             $upload = SuppressionUpload::create([
+                'user_id' => auth()->id(),
                 'type' => $input['type'],
                 'offer_id' => $input['offer_id'],
                 'filename' => $suppression_file_name,

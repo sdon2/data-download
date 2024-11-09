@@ -33,30 +33,47 @@ return [
         [
             'name' => 'Offer',
             'value' => 'offer',
-        ],
-        [
-            'name' => 'Complaints',
-            'value' => 'complaints',
-        ],
-        [
-            'name' => 'Opt Out',
-            'value' => 'optout',
-        ],
-        [
-            'name' => 'Bad Mail',
-            'value' => 'badmail',
-        ],
-        [
-            'name' => 'ESP Bad Mail',
-            'value' => 'espbadmail',
+            'include_in_dropdown' => true,
         ],
         [
             'name' => 'Unsubscribe',
             'value' => 'unsubscribe',
+            'include_in_dropdown' => true,
+        ],
+        [
+            'name' => 'Bad Mail',
+            'value' => 'badmail',
+            'include_in_dropdown' => true,
+        ],
+        [
+            'name' => 'ESP Bad Mail',
+            'value' => 'espbadmail',
+            'include_in_dropdown' => true,
+        ],
+        [
+            'name' => 'Complaints',
+            'value' => 'complaints',
+            'include_in_dropdown' => true,
+        ],
+        [
+            'name' => 'FBL',
+            'value' => 'fbl',
+            'include_in_dropdown' => true,
+        ],
+        [
+            'name' => 'Opt Out',
+            'value' => 'optout',
+            'include_in_dropdown' => true,
+        ],
+        [
+            'name' => 'Unique',
+            'value' => 'unique',
+            'include_in_dropdown' => false,
         ],
         [
             'name' => 'DND',
             'value' => 'dnd',
+            'include_in_dropdown' => false,
         ],
     ]
 ];

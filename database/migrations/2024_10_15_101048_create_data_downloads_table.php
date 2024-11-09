@@ -11,8 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('downloads', function (Blueprint $table) {
+        Schema::create('data_downloads', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->references('id')->on('users');
             $table->string('identifier');
             $table->json('suppressions');
             $table->string('offer_id');
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('downloads');
+        Schema::dropIfExists('data_downloads');
     }
 };

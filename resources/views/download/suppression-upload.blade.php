@@ -33,9 +33,11 @@
                                 <select id="type" name="type" class="form-control select2" required>
                                     <option value="" {{ old('type') == '' ? 'selected' : '' }}>--SELECT</option>
                                     @foreach (config('data-download.suppression-types') as $type)
-                                        <option value="{{ $type['value'] }}"
-                                            {{ old('type') == $type['value'] ? 'selected' : '' }}>{{ $type['name'] }}
-                                        </option>
+                                        @if ($type['include_in_dropdown'])
+                                            <option value="{{ $type['value'] }}"
+                                                {{ old('type') == $type['value'] ? 'selected' : '' }}>{{ $type['name'] }}
+                                            </option>
+                                        @endif
                                     @endforeach
                                 </select>
                                 @error('type')

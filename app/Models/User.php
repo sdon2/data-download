@@ -44,4 +44,19 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function data_uploads()
+    {
+        return $this->hasMany(DataUpload::class, 'user_id', 'id');
+    }
+
+    public function suppression_uploads()
+    {
+        return $this->hasMany(SuppressionUpload::class, 'user_id', 'id');
+    }
+
+    public function data_downloads()
+    {
+        return $this->hasMany(DataDownload::class, 'user_id', 'id');
+    }
 }

@@ -22,7 +22,7 @@ class TempData extends Model
         DB::statement(sprintf('INSERT INTO `%s` (%s);', static::$tableName, $sql));
     }
 
-    public static function setDataCount(Download $download)
+    public static function setDataCount(DataDownload $download)
     {
         $count = (new static)->query()->count();
         $download->update([

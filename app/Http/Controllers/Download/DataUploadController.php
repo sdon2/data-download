@@ -17,7 +17,7 @@ class DataUploadController extends Controller
 
     public function index(Request $request)
     {
-        $dataUploads = DataUpload::query()->latest()->paginate(10);
+        $dataUploads = auth()->user()->data_uploads()->with('user')->latest()->paginate(10);
         return view('download.data-upload', ['dataUploads' => $dataUploads]);
     }
 
@@ -34,6 +34,7 @@ class DataUploadController extends Controller
             $data_file_name = $this->getDataFileName($isp, $input['list_id'], $input['sub_seg_id'], $input['seg_id']);
 
             $upload = DataUpload::create([
+                'user_id' => auth()->id(),
                 'isp' => $isp,
                 'filename' => $data_file_name,
             ]);

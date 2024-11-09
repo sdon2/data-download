@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Download;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Download\DataDownloadRequest;
-use App\Jobs\Download\DownloadJob;
+use App\Jobs\Download\DataDownloadJob;
 use App\Models\Data;
-use App\Models\Download;
+use App\Models\DataDownload;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
@@ -18,7 +18,7 @@ class DataDownloadController extends Controller
 
     public function index(Request $request)
     {
-        $dataDownloads = Download::query()->latest()->paginate(10);
+        $dataDownloads = auth()->user()->data_downloads()->latest()->paginate(10);
         return view('download.data-download', ['dataDownloads' => $dataDownloads]);
     }
 
@@ -31,14 +31,15 @@ class DataDownloadController extends Controller
             $data = $request->validated();
 
             $data = [
+                'user_id' => auth()->id(),
                 'identifier' => $identifier,
                 'suppressions' => $data['suppressions'],
                 'offer_id' => $data['offer_id'],
             ];
 
-            $download = Download::create($data);
+            $download = DataDownload::create($data);
 
-            dispatch(new DownloadJob($download));
+            dispatch(new DataDownloadJob($download));
 
             return back()->with('success', 'Data dowload added successfully');
 
@@ -49,7 +50,7 @@ class DataDownloadController extends Controller
         }
     }
 
-    public function delete(Download $dataDownload)
+    public function delete(DataDownload $dataDownload)
     {
         try {
 
@@ -65,7 +66,7 @@ class DataDownloadController extends Controller
         }
     }
 
-    public function downloadFile(Download $dataDownload)
+    public function downloadFile(DataDownload $dataDownload)
     {
         try {
             $file = $dataDownload->getFirstMedia('downloads');

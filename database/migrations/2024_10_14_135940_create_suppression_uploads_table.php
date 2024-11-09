@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('suppression_uploads', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->references('id')->on('users');
             $table->string('type', 255);
             $table->string('offer_id')->nullable();
             $table->string('filename', 255);
