@@ -3,18 +3,17 @@
 use App\Http\Controllers\Download\DataDownloadController;
 use App\Http\Controllers\Download\DataUploadController;
 use App\Http\Controllers\Download\SuppressionUploadController;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::view('/', 'welcome');
+Route::get('/', function () {
+    return redirect()->route('dashboard');
+});
 
 require __DIR__.'/auth.php';
 
-Auth::routes();
+Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::group(['prefix' => '/download', 'as' => 'download.'], function () {
+Route::group(['prefix' => '/download', 'as' => 'download.', 'middleware' => ['auth']], function () {
     Route::get('/data-upload', [DataUploadController::class, 'index'])->name('data-upload');
     Route::post('/data-upload', [DataUploadController::class, 'upload']);
     Route::get('/data-upload/delete/{dataUpload}', [DataUploadController::class, 'delete'])->name('data-upload.delete');
